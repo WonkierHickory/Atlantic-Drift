@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{EAA4A2C9-5944-45C2-8872-01E24389A684}</ProjectGuid>
+    <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AtlanticDrift</RootNamespace>
+    <AssemblyName>AtlanticDrift</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <XnaPlatform>Windows</XnaPlatform>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaCrossPlatformGroupID>975a11c8-1964-472c-8fac-194b936cd851</XnaCrossPlatformGroupID>
+    <XnaOutputType>Game</XnaOutputType>
+    <ApplicationIcon>Game.ico</ApplicationIcon>
+    <Thumbnail>GameThumbnail.png</Thumbnail>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\x86\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+    <XnaCompressContent>false</XnaCompressContent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\x86\Release</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+    <XnaCompressContent>true</XnaCompressContent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="JigLibX, Version=0.3.1.0, Culture=neutral, PublicKeyToken=96bb577564343f16, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\GDApp - Halloween - Collision Detection &amp; Physics - 3\GDApp\Dependencies\Physics\JigLibX.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.GamerServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Net" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="UDPLibrary\Camera\Camera3D.cs" />
+    <Compile Include="UDPLibrary\Controllers\Base\Controller.cs" />
+    <Compile Include="UDPLibrary\Controllers\Camera\FirstPersonController.cs" />
+    <Compile Include="UDPLibrary\Controllers\Camera\RailController.cs" />
+    <Compile Include="UDPLibrary\Controllers\Camera\ThirdPersonController.cs" />
+    <Compile Include="UDPLibrary\Controllers\Common\DriveController.cs" />
+    <Compile Include="UDPLibrary\Controllers\Common\FlightController.cs" />
+    <Compile Include="UDPLibrary\Controllers\Common\TargetController.cs" />
+    <Compile Include="UDPLibrary\Controllers\Common\TrackController.cs" />
+    <Compile Include="UDPLibrary\Controllers\Common\UserInputController.cs" />
+    <Compile Include="UDPLibrary\Controllers\Object\ColorLerpController.cs" />
+    <Compile Include="UDPLibrary\Controllers\Object\RotationController.cs" />
+    <Compile Include="UDPLibrary\Controllers\Object\TranslationLerpController.cs" />
+    <Compile Include="UDPLibrary\Controllers\Physics\PhysicsController.cs" />
+    <Compile Include="UDPLibrary\Curve\Curve1D.cs" />
+    <Compile Include="UDPLibrary\Curve\Curve2D.cs" />
+    <Compile Include="UDPLibrary\Curve\Curve3D.cs" />
+    <Compile Include="UDPLibrary\Curve\Transform2DCurve.cs" />
+    <Compile Include="UDPLibrary\Curve\Transform3DCurve.cs" />
+    <Compile Include="UDPLibrary\Data\AppData.cs" />
+    <Compile Include="UDPLibrary\Debug\BoundingBoxDrawer.cs" />
+    <Compile Include="UDPLibrary\Debug\PhysicsDebugDrawer.cs" />
+    <Compile Include="UDPLibrary\Dictionaries\GenericDictionary.cs" />
+    <Compile Include="UDPLibrary\Enums\ActorType.cs" />
+    <Compile Include="UDPLibrary\Enums\ControllerType.cs" />
+    <Compile Include="UDPLibrary\Enums\PlayStateType.cs" />
+    <Compile Include="UDPLibrary\Filters\ActorIDFilter.cs" />
+    <Compile Include="UDPLibrary\Filters\ActorTypeFilter.cs" />
+    <Compile Include="UDPLibrary\Interfaces\IActor.cs" />
+    <Compile Include="UDPLibrary\Interfaces\IController.cs" />
+    <Compile Include="UDPLibrary\Interfaces\IFilter.cs" />
+    <Compile Include="UDPLibrary\Interfaces\IVertexData.cs" />
+    <Compile Include="UDPLibrary\Managers\Camera\CameraManager.cs" />
+    <Compile Include="UDPLibrary\Managers\Input\KeyboardManager.cs" />
+    <Compile Include="UDPLibrary\Managers\Input\MouseManager.cs" />
+    <Compile Include="UDPLibrary\Managers\Object\ObjectManager.cs" />
+    <Compile Include="UDPLibrary\Managers\Physics\PhysicsManager.cs" />
+    <Compile Include="UDPLibrary\Objects\3D\Base\Actor3D.cs" />
+    <Compile Include="UDPLibrary\Objects\3D\Base\DrawnActor3D.cs" />
+    <Compile Include="UDPLibrary\Objects\3D\Collidable\CollidableObject.cs" />
+    <Compile Include="UDPLibrary\Objects\3D\Primitives\PrimitiveObject.cs" />
+    <Compile Include="UDPLibrary\Objects\3D\Primitives\TexturedPrimitiveObject.cs" />
+    <Compile Include="UDPLibrary\Objects\Base\Actor.cs" />
+    <Compile Include="UDPLibrary\Objects\Model\ModelObject.cs" />
+    <Compile Include="UDPLibrary\Parameters\Camera\ProjectionParameters.cs" />
+    <Compile Include="UDPLibrary\Parameters\Camera\RailParamaters.cs" />
+    <Compile Include="UDPLibrary\Parameters\Effect\EffectParamaters.cs" />
+    <Compile Include="UDPLibrary\Parameters\Primitives\VertexData.cs" />
+    <Compile Include="UDPLibrary\Parameters\Transforms\Transform3D.cs" />
+    <Compile Include="UDPLibrary\Utility\Integer2.cs" />
+    <Compile Include="UDPLibrary\Utility\Integer3.cs" />
+    <Compile Include="UDPLibrary\Utility\MathUtility.cs" />
+    <Compile Include="UDPLibrary\Utility\ScreenUtility.cs" />
+    <Compile Include="UDPLibrary\Utility\StringUtility.cs" />
+    <Compile Include="UDPLibrary\Utility\SerializationUtility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Game.ico" />
+    <Content Include="GameThumbnail.png">
+      <XnaPlatformSpecific>true</XnaPlatformSpecific>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AtlanticDriftContent\AtlanticDriftContent.contentproj">
+      <Name>AtlanticDriftContent</Name>
+      <XnaReferenceType>Content</XnaReferenceType>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.4.5">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 4.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
+  <!--
+      To modify your build process, add your task inside one of the targets below and uncomment it. 
+      Other similar extension points exist, see Microsoft.Common.targets.
+      <Target Name="BeforeBuild">
+      </Target>
+      <Target Name="AfterBuild">
+      </Target>
+    -->
+</Project>

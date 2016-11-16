@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtlanticDrift", "AtlanticDrift\AtlanticDrift\AtlanticDrift.csproj", "{EAA4A2C9-5944-45C2-8872-01E24389A684}"
+EndProject
+Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "AtlanticDriftContent", "AtlanticDrift\AtlanticDriftContent\AtlanticDriftContent.contentproj", "{33AE6E35-ABC4-40ED-A5E6-946AA387113D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EAA4A2C9-5944-45C2-8872-01E24389A684}.Debug|x86.ActiveCfg = Debug|x86
+		{EAA4A2C9-5944-45C2-8872-01E24389A684}.Debug|x86.Build.0 = Debug|x86
+		{EAA4A2C9-5944-45C2-8872-01E24389A684}.Release|x86.ActiveCfg = Release|x86
+		{EAA4A2C9-5944-45C2-8872-01E24389A684}.Release|x86.Build.0 = Release|x86
+		{33AE6E35-ABC4-40ED-A5E6-946AA387113D}.Debug|x86.ActiveCfg = Debug|x86
+		{33AE6E35-ABC4-40ED-A5E6-946AA387113D}.Release|x86.ActiveCfg = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
