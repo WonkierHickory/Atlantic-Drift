@@ -265,6 +265,8 @@ namespace AtlanticDrift
             this.modelDictionary.Add("box", Content.Load<Model>("Assets/Models/box"));
 
             this.modelDictionary.Add("island", Content.Load<Model>("Assets/Models/Island"));
+
+            this.modelDictionary.Add("islandMk2", Content.Load<Model>("Assets/Models/IslandMk2"));
         }
 
         private void LoadTextures()
@@ -536,7 +538,7 @@ namespace AtlanticDrift
             Transform3D transform3D = null;
             Texture2D texture = null;
 
-            Model model = this.modelDictionary["island"];
+            Model model = this.modelDictionary["islandMk2"];
             texture = this.textureDictionary["sand"];
             transform3D = new Transform3D(new Vector3(-90, -50, 100), new Vector3(0, 0, 0),
                 new Vector3(0.0155f, 0.0155f, 0.0155f), Vector3.UnitX, Vector3.UnitY);
