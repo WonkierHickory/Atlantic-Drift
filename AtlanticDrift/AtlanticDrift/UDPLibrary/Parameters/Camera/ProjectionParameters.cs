@@ -31,6 +31,8 @@ namespace UDPLibrary
         public static ProjectionParameters StandardShallowSixteenNine
             = new ProjectionParameters(MathHelper.PiOver2, 16.0f / 9, 1, 500);
 
+        public static ProjectionParameters standardBanter
+            = new ProjectionParameters(MathHelper.PiOver2, 16.0f / 9, 1, 2500);
         #endregion
 
         #region Fields

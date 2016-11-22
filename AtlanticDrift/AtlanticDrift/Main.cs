@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using JigLibX.Collision;
 using JigLibX.Geometry;
 using UDPLibrary;
@@ -11,7 +10,7 @@ namespace AtlanticDrift
     {
 
         #region Variables
-
+        
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private BasicEffect wireframeEffect, texturedPrimitiveEffect, texturedModelEffect;
@@ -99,7 +98,7 @@ namespace AtlanticDrift
         protected override void Initialize()
         {
             int width = 1024, height = 768;
-            int worldScale = 1000;
+            int worldScale = 2000;
 
             InitializeStaticReferences();
             InitializeGraphics(width, height);
@@ -114,6 +113,8 @@ namespace AtlanticDrift
             LoadPrimitiveArchetypes();
 
             InitializeStaticCollidableGround(worldScale);
+            //InitializeStaticCollidableGround2(worldScale);
+            InitializeNonCollidableModels();
             InitializeSkyBox(worldScale);
 
             InitializeCameraTracks();
@@ -241,7 +242,7 @@ namespace AtlanticDrift
             #region First Person Camera
             transform = new Transform3D(new Vector3(400, 30, 450), -Vector3.UnitZ, Vector3.UnitY);
             camera = new Camera3D("Static", ActorType.Camera, transform,
-                ProjectionParameters.StandardMediumSixteenNine,
+                ProjectionParameters.standardBanter,
                 new Viewport(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight));
             camera.AttachController(new FirstPersonController("firstPersControl1",
             ControllerType.FirstPerson, AppData.CameraMoveKeys,
@@ -438,7 +439,7 @@ namespace AtlanticDrift
             transform = new Transform3D(Vector3.Zero, Vector3.Zero, Vector3.One, Vector3.UnitZ, Vector3.UnitY);
             texturedQuad = new TexturedPrimitiveObject("textured quad archetype", ActorType.Decorator,
                      transform, this.texturedPrimitiveEffect, this.vertexDictionary["textured_quad"],
-                     this.textureDictionary["checkerboard"]); //or  we can leave texture null since we will replace it later
+                     this.textureDictionary["checkerboard"]); //or we can leave texture null since we will replace it later
 
             this.objectDictionary.Add("textured_quad", texturedQuad);
             #endregion
@@ -531,7 +532,7 @@ namespace AtlanticDrift
             this.objectManager.Add(cloneTexturedPrimitiveObject);
             #endregion
         }
-
+        
         private void InitializeStaticCollidableGround(int scale)
         {
             CollidableObject collidableObject = null;
@@ -548,6 +549,23 @@ namespace AtlanticDrift
             collidableObject.Enable(true, 1); //change to false, see what happens.
             this.objectManager.Add(collidableObject);
         }
+
+        //private void InitializeStaticCollidableGround2(int scale)
+        //{
+        //    CollidableObject collidableObject = null;
+        //    Transform3D transform3D = null;
+        //    Texture2D texture = null;
+
+        //    Model model = this.modelDictionary["box"];
+        //    texture = this.textureDictionary["sand"];
+        //    transform3D = new Transform3D(new Vector3(0, 5, 0), new Vector3(0, 0, 0),
+        //        new Vector3(scale, 0.01f, scale), Vector3.UnitX, Vector3.UnitY);
+
+        //    collidableObject = new CollidableObject("ground", ActorType.CollidableGround, transform3D, this.texturedModelEffect, Color.White, 1, texture, model);
+        //    collidableObject.AddPrimitive(new Box(transform3D.Translation, Matrix.Identity, transform3D.Scale), new MaterialProperties(0.8f, 0.8f, 0.7f));
+        //    collidableObject.Enable(true, 1); //change to false, see what happens.
+        //    this.objectManager.Add(collidableObject);
+        //}
 
         #endregion
 
