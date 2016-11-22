@@ -268,6 +268,12 @@ namespace AtlanticDrift
             this.modelDictionary.Add("island", Content.Load<Model>("Assets/Models/Island"));
 
             this.modelDictionary.Add("islandMk2", Content.Load<Model>("Assets/Models/IslandMk2"));
+
+            //this.modelDictionary.Add("foliage", Content.Load<Model>("Assets/Models/foliage"));
+
+            //this.modelDictionary.Add("tree", Content.Load<Model>("Assets/Models/TempTree"));
+
+            //this.modelDictionary.Add("puzzleChest", Content.Load<Model>("Assets/Models/PuzzleChest"));
         }
 
         private void LoadTextures()
