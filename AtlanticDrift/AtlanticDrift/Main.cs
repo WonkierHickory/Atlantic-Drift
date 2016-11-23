@@ -20,6 +20,8 @@ namespace AtlanticDrift
         private KeyboardManager keyboardManager;
         private CameraManager cameraManager;
         private PhysicsManager physicsManager;
+        private MenuManager menuManager;
+        private Microsoft.Xna.Framework.Rectangle screenRectangle;
 
         private GenericDictionary<string, Texture2D> textureDictionary;
         private GenericDictionary<string, IVertexData> vertexDictionary;
@@ -27,16 +29,26 @@ namespace AtlanticDrift
         private GenericDictionary<string, Model> modelDictionary;
         private GenericDictionary<string, Transform3DCurve> curveDictionary;
         private GenericDictionary<string, RailParameters> railDictionary;
+        private GenericDictionary<string, SpriteFont> fontDictionary;
 
         private Vector2 screenCentre;
 
         //temp
         private ModelObject drivableModelObject;
 
+
+
         #endregion
 
         #region Properties
 
+        public SpriteBatch SpriteBatch
+        {
+            get
+            {
+                return this.spriteBatch;
+            }
+        }
         public GraphicsDeviceManager Graphics
         {
             get
@@ -44,12 +56,24 @@ namespace AtlanticDrift
                 return this.graphics;
             }
         }
-
         public Vector2 ScreenCentre
         {
             get
             {
                 return this.screenCentre;
+            }
+        }
+
+        public Microsoft.Xna.Framework.Rectangle ScreenRectangle
+        {
+            get
+            {
+                if (this.screenRectangle == Microsoft.Xna.Framework.Rectangle.Empty)
+                    this.screenRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0,
+                        (int)graphics.PreferredBackBufferWidth,
+                        (int)graphics.PreferredBackBufferHeight);
+
+                return this.screenRectangle;
             }
         }
 
@@ -60,7 +84,6 @@ namespace AtlanticDrift
                 return this.mouseManager;
             }
         }
-
         public KeyboardManager KeyboardManager
         {
             get
@@ -68,7 +91,6 @@ namespace AtlanticDrift
                 return this.keyboardManager;
             }
         }
-
         public CameraManager CameraManager
         {
             get
@@ -76,7 +98,6 @@ namespace AtlanticDrift
                 return this.cameraManager;
             }
         }
-
         public PhysicsManager PhysicsManager
         {
             get
@@ -104,13 +125,15 @@ namespace AtlanticDrift
             InitializeGraphics(width, height);
             InitializeEffects();
 
-            InitializeManagers();
             InitializeDictionaries();
 
+            LoadFonts();
             LoadModels();
             LoadTextures();
             LoadVertices();
             LoadPrimitiveArchetypes();
+
+            InitializeManagers();
 
             InitializeStaticCollidableGround(worldScale);
             //InitializeStaticCollidableGround2(worldScale);
@@ -132,6 +155,8 @@ namespace AtlanticDrift
             this.vertexDictionary = new GenericDictionary<string, IVertexData>("vertex dictionary");
 
             this.modelDictionary = new GenericDictionary<string, Model>("model dictionary");
+
+            this.fontDictionary = new GenericDictionary<string, SpriteFont>("font dictionary");
 
             this.objectDictionary = new GenericDictionary<string, DrawnActor3D>("object dictionary");
 
@@ -159,6 +184,15 @@ namespace AtlanticDrift
 
             this.cameraManager = new CameraManager(this);
             Components.Add(this.cameraManager);
+
+            Texture2D[] menuTextures = { this.textureDictionary["mainmenu"],
+                this.textureDictionary["audio"],
+                this.textureDictionary["controlsmenu"],
+                this.textureDictionary["exitmenu"] };
+
+            this.menuManager = new MenuManager(this, menuTextures, this.fontDictionary["menu"], Integer2.Zero, Color.White);
+
+            Components.Add(this.menuManager);
 
         }
 
@@ -261,6 +295,13 @@ namespace AtlanticDrift
 
         #region Assets
 
+        private void LoadFonts()
+        {
+
+            this.fontDictionary.Add("menu", Content.Load<SpriteFont>("Assets/Fonts/menu"));
+
+        }
+
         private void LoadModels()
         {
             this.modelDictionary.Add("box", Content.Load<Model>("Assets/Models/box"));
@@ -298,6 +339,25 @@ namespace AtlanticDrift
                 Content.Load<Texture2D>("Assets/Textures/Skybox/right"));
             this.textureDictionary.Add("skybox_sky",
                 Content.Load<Texture2D>("Assets/Textures/Skybox/sky"));
+            #endregion
+
+            #region other
+            
+            this.textureDictionary.Add("controlsmenu",
+            Content.Load<Texture2D>("Assets/Textures/Menu/controlsmenu"));
+
+            this.textureDictionary.Add("exitmenu",
+            Content.Load<Texture2D>("Assets/Textures/Menu/exitmenu"));
+
+            this.textureDictionary.Add("exitmenuwithtrans",
+            Content.Load<Texture2D>("Assets/Textures/Menu/exitmenuwithtrans"));
+
+            this.textureDictionary.Add("mainmenu",
+            Content.Load<Texture2D>("Assets/Textures/Menu/mainmenu"));
+
+            this.textureDictionary.Add("audio",
+            Content.Load<Texture2D>("Assets/Textures/Menu/audiomenu"));
+
             #endregion
 
         }
