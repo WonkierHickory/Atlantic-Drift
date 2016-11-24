@@ -119,7 +119,7 @@ namespace AtlanticDrift
         protected override void Initialize()
         {
             int width = 1024, height = 768;
-            int worldScale = 4000;
+            int worldScale = 10000;
 
             InitializeStaticReferences();
             InitializeGraphics(width, height);
@@ -594,7 +594,7 @@ namespace AtlanticDrift
             //water
             cloneTexturedPrimitiveObject = (TexturedPrimitiveObject)archTexturedPrimitiveObject.Clone();
             cloneTexturedPrimitiveObject.ID = "water";
-            cloneTexturedPrimitiveObject.Transform3D.Translation = new Vector3(0, 5, 0);
+            cloneTexturedPrimitiveObject.Transform3D.Translation = new Vector3(0, 0, 0);
             cloneTexturedPrimitiveObject.Transform3D.Rotation = new Vector3(90, 0, 0);
             cloneTexturedPrimitiveObject.Texture = this.textureDictionary["water"];
             this.objectManager.Add(cloneTexturedPrimitiveObject);
@@ -609,8 +609,8 @@ namespace AtlanticDrift
 
             Model model = this.modelDictionary["LowPoly"];
             texture = this.textureDictionary["sand"];
-            transform3D = new Transform3D(new Vector3(-90, 300, 100), new Vector3(0, 0, 0),
-                new Vector3(0.5f, 0.5f, 0.5f), Vector3.UnitX, Vector3.UnitY);
+            transform3D = new Transform3D(new Vector3(-90, 580, 100), new Vector3(0, 0, 0),
+                new Vector3(0.7f, 0.7f, 0.7f), Vector3.UnitX, Vector3.UnitY);
 
             collidableObject = new CollidableObject("ground", ActorType.CollidableGround, transform3D, this.texturedModelEffect, Color.White, 1, texture, model);
             collidableObject.AddPrimitive(new Box(transform3D.Translation, Matrix.Identity, transform3D.Scale), new MaterialProperties(0.8f, 0.8f, 0.7f));

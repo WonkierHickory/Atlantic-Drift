@@ -32,7 +32,7 @@ namespace UDPLibrary
             = new ProjectionParameters(MathHelper.PiOver2, 16.0f / 9, 1, 500);
 
         public static ProjectionParameters standardBanter
-            = new ProjectionParameters(MathHelper.PiOver2, 16.0f / 9, 1, 2500);
+            = new ProjectionParameters(MathHelper.PiOver2, 16.0f / 9, 1, 15000);
         #endregion
 
         #region Fields
