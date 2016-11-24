@@ -119,7 +119,7 @@ namespace AtlanticDrift
         protected override void Initialize()
         {
             int width = 1024, height = 768;
-            int worldScale = 2000;
+            int worldScale = 4000;
 
             InitializeStaticReferences();
             InitializeGraphics(width, height);
@@ -309,6 +309,8 @@ namespace AtlanticDrift
             this.modelDictionary.Add("island", Content.Load<Model>("Assets/Models/Island"));
 
             this.modelDictionary.Add("islandMk2", Content.Load<Model>("Assets/Models/IslandMk2"));
+
+            this.modelDictionary.Add("LowPoly", Content.Load<Model>("Assets/Models/LowPolyIdea"));
 
             //this.modelDictionary.Add("foliage", Content.Load<Model>("Assets/Models/foliage"));
 
@@ -605,10 +607,10 @@ namespace AtlanticDrift
             Transform3D transform3D = null;
             Texture2D texture = null;
 
-            Model model = this.modelDictionary["islandMk2"];
+            Model model = this.modelDictionary["LowPoly"];
             texture = this.textureDictionary["sand"];
-            transform3D = new Transform3D(new Vector3(-90, -50, 100), new Vector3(0, 0, 0),
-                new Vector3(0.0155f, 0.0155f, 0.0155f), Vector3.UnitX, Vector3.UnitY);
+            transform3D = new Transform3D(new Vector3(-90, 300, 100), new Vector3(0, 0, 0),
+                new Vector3(0.5f, 0.5f, 0.5f), Vector3.UnitX, Vector3.UnitY);
 
             collidableObject = new CollidableObject("ground", ActorType.CollidableGround, transform3D, this.texturedModelEffect, Color.White, 1, texture, model);
             collidableObject.AddPrimitive(new Box(transform3D.Translation, Matrix.Identity, transform3D.Scale), new MaterialProperties(0.8f, 0.8f, 0.7f));
