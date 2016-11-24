@@ -137,6 +137,7 @@ namespace AtlanticDrift
 
             InitializeStaticCollidableGround(worldScale);
             //InitializeStaticCollidableGround2(worldScale);
+            InitializeCollidableObjects();
             InitializeNonCollidableModels();
             InitializeSkyBox(worldScale);
 
@@ -316,7 +317,7 @@ namespace AtlanticDrift
 
             //this.modelDictionary.Add("tree", Content.Load<Model>("Assets/Models/TempTree"));
 
-            //this.modelDictionary.Add("puzzleChest", Content.Load<Model>("Assets/Models/PuzzleChest"));
+            this.modelDictionary.Add("puzzleChest", Content.Load<Model>("Assets/Models/PuzzleChest"));
         }
 
         private void LoadTextures()
@@ -599,6 +600,23 @@ namespace AtlanticDrift
             cloneTexturedPrimitiveObject.Texture = this.textureDictionary["water"];
             this.objectManager.Add(cloneTexturedPrimitiveObject);
             #endregion
+        }
+
+        private void InitializeCollidableObjects()
+        {
+            CollidableObject chest = null;
+            Transform3D transform3D = null;
+            Texture2D texture = null;
+
+            Model model = this.modelDictionary["puzzleChest"];
+            texture = this.textureDictionary["checkerboard"];
+            transform3D = new Transform3D(new Vector3(10, 50, 10), new Vector3(0, 0, 0),
+                new Vector3(0.4f, 0.4f, 0.4f), Vector3.UnitX, Vector3.UnitY);
+
+            chest = new CollidableObject("chest", ActorType.CollidableGround, transform3D, this.texturedModelEffect, Color.White, 1, texture, model);
+            chest.AddPrimitive(new Box(transform3D.Translation, Matrix.Identity, transform3D.Scale), new MaterialProperties(0.8f, 0.8f, 0.7f));
+            chest.Enable(true, 1); //change to false, see what happens.
+            this.objectManager.Add(chest);
         }
         
         private void InitializeStaticCollidableGround(int scale)
