@@ -19,6 +19,7 @@ namespace UDPLibrary
         LerpScale,
         LerpColor,
         LerpTexture,
-        Drive
+        Drive,
+        FirstPersonCollidable
     }
 }

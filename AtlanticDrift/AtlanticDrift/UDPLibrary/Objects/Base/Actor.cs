@@ -1,6 +1,6 @@
 ﻿using System;
-using Microsoft.Xna.Framework;
 using AtlanticDrift;
+using Microsoft.Xna.Framework;
 
 namespace UDPLibrary
 {
@@ -11,6 +11,7 @@ namespace UDPLibrary
 
         private string id;
         private ActorType actorType;
+        private StatusType statusType;
         #endregion
 
         #region Properties
@@ -36,12 +37,24 @@ namespace UDPLibrary
                 this.id = value;
             }
         }
+        public StatusType StatusType
+        {
+            get
+            {
+                return this.statusType;
+            }
+            set
+            {
+                this.statusType = value;
+            }
+        }
         #endregion
 
-        public Actor(string id, ActorType actorType)
+        public Actor(string id, ActorType actorType, StatusType statusType)
         {
             this.id = id;
             this.actorType = actorType;
+            this.statusType = statusType;
         }
         public virtual void Update(GameTime gameTime)
         {
@@ -54,10 +67,23 @@ namespace UDPLibrary
         {
             return Matrix.Identity; //does nothing - see derived classes especially CollidableObject
         }
+        public virtual ActorType GetActorType()
+        {
+            return this.actorType;
+        }
+        public virtual string getID()
+        {
+            return this.id;
+        }
 
         public object Clone()
         {
             return this.MemberwiseClone(); //deep because all variables are either C# types, structs, or enums
+        }
+
+        public virtual bool Remove()
+        {
+            return false; //see implementation in child classes e.g. ModelObject
         }
     }
 }

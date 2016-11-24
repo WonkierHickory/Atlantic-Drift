@@ -211,8 +211,8 @@ namespace AtlanticDrift
             this.graphics.ApplyChanges();
 
             //or we can set full screen
-            //   this.graphics.IsFullScreen = true;
-            //    this.graphics.ApplyChanges();
+               this.graphics.IsFullScreen = true;
+                this.graphics.ApplyChanges();
 
             //records screen centre point - used by mouse to see how much the mouse pointer has moved
             this.screenCentre = new Vector2(this.graphics.PreferredBackBufferWidth / 2.0f,
@@ -287,7 +287,24 @@ namespace AtlanticDrift
             this.cameraManager.Add(cameraLayout, camera);
             #endregion
             #endregion
-         
+
+            #region Layout 1x1 Collidable
+            cameraLayout = "1x1 Collidable";
+
+            transform = new Transform3D(new Vector3(0, 50, 100), -Vector3.UnitZ, Vector3.UnitY);
+            camera = new Camera3D("Static", ActorType.Camera, transform,
+                ProjectionParameters.StandardMediumSixteenNine,
+                new Viewport(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight));
+            camera.AttachController(new CollidableFirstPersonController(
+                camera + " controller",
+                ControllerType.FirstPersonCollidable,
+                AppData.CameraMoveKeys, AppData.CollidableCameraMoveSpeed,
+                AppData.CollidableCameraStrafeSpeed, AppData.CollidableCameraRotationSpeed,
+                2f, 10, 1, 1, 1, Vector3.Zero, camera));
+
+            this.cameraManager.Add(cameraLayout, camera);
+            #endregion
+
             //finally, set the active layout
             this.cameraManager.SetActiveCameraLayout("1x1");
 
@@ -611,10 +628,10 @@ namespace AtlanticDrift
             Model model = this.modelDictionary["puzzleChest"];
             texture = this.textureDictionary["checkerboard"];
             transform3D = new Transform3D(new Vector3(10, 50, 10), new Vector3(0, 0, 0),
-                new Vector3(0.4f, 0.4f, 0.4f), Vector3.UnitX, Vector3.UnitY);
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
             chest = new CollidableObject("chest", ActorType.CollidableGround, transform3D, this.texturedModelEffect, Color.White, 1, texture, model);
-            chest.AddPrimitive(new Box(transform3D.Translation, Matrix.Identity, transform3D.Scale), new MaterialProperties(0.8f, 0.8f, 0.7f));
+            chest.AddPrimitive(new Box(transform3D.Translation, Matrix.Identity, transform3D.Scale), new MaterialProperties(0.2f, 0.2f, 0.2f));
             chest.Enable(true, 1); //change to false, see what happens.
             this.objectManager.Add(chest);
         }

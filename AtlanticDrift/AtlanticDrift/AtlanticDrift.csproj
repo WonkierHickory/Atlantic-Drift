@@ -81,6 +81,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="UDPLibrary\Camera\Camera3D.cs" />
     <Compile Include="UDPLibrary\Controllers\Base\Controller.cs" />
+    <Compile Include="UDPLibrary\Controllers\Camera\Collidable\CollidableFirstPersonController.cs" />
     <Compile Include="UDPLibrary\Controllers\Camera\FirstPersonController.cs" />
     <Compile Include="UDPLibrary\Controllers\Camera\RailController.cs" />
     <Compile Include="UDPLibrary\Controllers\Camera\ThirdPersonController.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="UDPLibrary\Enums\ActorType.cs" />
     <Compile Include="UDPLibrary\Enums\ControllerType.cs" />
     <Compile Include="UDPLibrary\Enums\PlayStateType.cs" />
+    <Compile Include="UDPLibrary\Enums\StatusType.cs" />
     <Compile Include="UDPLibrary\Filters\ActorIDFilter.cs" />
     <Compile Include="UDPLibrary\Filters\ActorTypeFilter.cs" />
     <Compile Include="UDPLibrary\Interfaces\IActor.cs" />
@@ -117,15 +119,18 @@
     <Compile Include="UDPLibrary\Managers\Input\MouseManager.cs" />
     <Compile Include="UDPLibrary\Managers\Object\ObjectManager.cs" />
     <Compile Include="UDPLibrary\Managers\Physics\PhysicsManager.cs" />
-    <Compile Include="UDPLibrary\Menu\MenuItem.cs" />
-    <Compile Include="UDPLibrary\Menu\MenuManager.cs" />
+    <Compile Include="UDPLibrary\Managers\Menu\MenuItem.cs" />
+    <Compile Include="UDPLibrary\Managers\Menu\MenuManager.cs" />
     <Compile Include="UDPLibrary\Objects\3D\Base\Actor3D.cs" />
     <Compile Include="UDPLibrary\Objects\3D\Base\DrawnActor3D.cs" />
     <Compile Include="UDPLibrary\Objects\3D\Collidable\CollidableObject.cs" />
+    <Compile Include="UDPLibrary\Objects\3D\Collidable\Player\CharacterObject.cs" />
+    <Compile Include="UDPLibrary\Objects\3D\Collidable\Player\PlayerObject.cs" />
+    <Compile Include="UDPLibrary\Objects\3D\Collidable\Static\TriangleMeshObject.cs" />
     <Compile Include="UDPLibrary\Objects\3D\Primitives\PrimitiveObject.cs" />
     <Compile Include="UDPLibrary\Objects\3D\Primitives\TexturedPrimitiveObject.cs" />
     <Compile Include="UDPLibrary\Objects\Base\Actor.cs" />
-    <Compile Include="UDPLibrary\Objects\Model\ModelObject.cs" />
+    <Compile Include="UDPLibrary\Objects\3D\Model\ModelObject.cs" />
     <Compile Include="UDPLibrary\Parameters\Camera\ProjectionParameters.cs" />
     <Compile Include="UDPLibrary\Parameters\Camera\RailParamaters.cs" />
     <Compile Include="UDPLibrary\Parameters\Effect\EffectParamaters.cs" />
