@@ -109,7 +109,7 @@ namespace AtlanticDrift
         #endregion  
 
         #region Initialisation
-
+    
         public Main()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -118,7 +118,7 @@ namespace AtlanticDrift
 
         protected override void Initialize()
         {
-            int width = 1024, height = 768;
+            int width = 1366, height = 768;
             int worldScale = 10000;
 
             InitializeStaticReferences();
@@ -136,8 +136,6 @@ namespace AtlanticDrift
             InitializeManagers();
 
             InitializeStaticCollidableGround(worldScale);
-            //InitializeStaticCollidableGround2(worldScale);
-            InitializeCollidableObjects();
             InitializeNonCollidableModels();
             InitializeSkyBox(worldScale);
 
@@ -275,7 +273,7 @@ namespace AtlanticDrift
             cameraLayout = "1x1";
 
             #region First Person Camera
-            transform = new Transform3D(new Vector3(400, 30, 450), -Vector3.UnitZ, Vector3.UnitY);
+            transform = new Transform3D(new Vector3(400, 50, 450), -Vector3.UnitZ, Vector3.UnitY);
             camera = new Camera3D("Static", ActorType.Camera, transform,
                 ProjectionParameters.standardBanter,
                 new Viewport(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight));
@@ -291,7 +289,7 @@ namespace AtlanticDrift
             #region Layout 1x1 Collidable
             cameraLayout = "1x1 Collidable";
 
-            transform = new Transform3D(new Vector3(0, 50, 100), -Vector3.UnitZ, Vector3.UnitY);
+            transform = new Transform3D(new Vector3(0, 100, 100), -Vector3.UnitZ, Vector3.UnitY);
             camera = new Camera3D("Static", ActorType.Camera, transform,
                 ProjectionParameters.StandardMediumSixteenNine,
                 new Viewport(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight));
@@ -324,17 +322,19 @@ namespace AtlanticDrift
         {
             this.modelDictionary.Add("box", Content.Load<Model>("Assets/Models/box"));
 
-            this.modelDictionary.Add("island", Content.Load<Model>("Assets/Models/Island"));
+            //this.modelDictionary.Add("island", Content.Load<Model>("Assets/Models/Island"));
 
             this.modelDictionary.Add("islandMk2", Content.Load<Model>("Assets/Models/IslandMk2"));
 
             this.modelDictionary.Add("LowPoly", Content.Load<Model>("Assets/Models/LowPolyIdea"));
 
+            //this.modelDictionary.Add("noTextures", Content.Load<Model>("Assets/Models/NoTextures"));
+
             //this.modelDictionary.Add("foliage", Content.Load<Model>("Assets/Models/foliage"));
 
             //this.modelDictionary.Add("tree", Content.Load<Model>("Assets/Models/TempTree"));
 
-            this.modelDictionary.Add("puzzleChest", Content.Load<Model>("Assets/Models/PuzzleChest"));
+            //this.modelDictionary.Add("puzzleChest", Content.Load<Model>("Assets/Models/PuzzleChest"));
         }
 
         private void LoadTextures()
@@ -347,6 +347,9 @@ namespace AtlanticDrift
 
             this.textureDictionary.Add("water",
                 Content.Load<Texture2D>("Assets/Textures/island/water"));
+
+            this.textureDictionary.Add("islandTex",
+                Content.Load<Texture2D>("Assets/Textures/island/islandTex"));
 
             #region Sky
             this.textureDictionary.Add("skybox_back",
@@ -537,7 +540,7 @@ namespace AtlanticDrift
 
         #region Non-Collidable
 
-        private void InitializeNonCollidableModels()
+        private void InitializeNonCollidableModels()    
         {
             //to do...
             Transform3D transform = new Transform3D(new Vector3(400, 5, 450),
@@ -619,23 +622,62 @@ namespace AtlanticDrift
             #endregion
         }
 
-        private void InitializeCollidableObjects()
-        {
-            CollidableObject chest = null;
-            Transform3D transform3D = null;
-            Texture2D texture = null;
+        //private void InitializeCollidableObjects()
+        //{
+        #region Vars
 
-            Model model = this.modelDictionary["puzzleChest"];
-            texture = this.textureDictionary["checkerboard"];
-            transform3D = new Transform3D(new Vector3(10, 50, 10), new Vector3(0, 0, 0),
-                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+        //    CollidableObject chest = null;
+        //    CollidableObject tree = null;
+        //    CollidableObject rock = null;
+        //    Transform3D transform3D = null;
+        //    Texture2D texture = null;
 
-            chest = new CollidableObject("chest", ActorType.CollidableGround, transform3D, this.texturedModelEffect, Color.White, 1, texture, model);
-            chest.AddPrimitive(new Box(transform3D.Translation, Matrix.Identity, transform3D.Scale), new MaterialProperties(0.2f, 0.2f, 0.2f));
-            chest.Enable(true, 1); //change to false, see what happens.
-            this.objectManager.Add(chest);
-        }
-        
+        #endregion
+
+        #region Chests
+
+        //    Model model = this.modelDictionary["puzzleChest"];
+        //    texture = this.textureDictionary["chestTex"];
+        //    transform3D = new Transform3D(new Vector3(10, 50, 10), new Vector3(0, 0, 0),
+        //        new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+        //    chest = new TriangleMeshObject("treasureChest", ActorType.CollidableProp, transform3D, this.texturedModelEffect, Color.White, 1, texture, model, new MaterialProperties(0.8f, 0.8f, 0.7f));
+        //    chest.Enable(true, 1); //change to false, see what happens.
+        //    chest.ActorType = ActorType.CollidableProp;
+        //    this.objectManager.Add(chest);
+
+        #endregion
+
+        #region Trees
+
+        //    Model model = this.modelDictionary["tree"];
+        //    texture = this.textureDictionary["palmTreeTex"];
+        //    transform3D = new Transform3D(new Vector3(10, 50, 10), new Vector3(0, 0, 0),
+        //        new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+        //    tree = new TriangleMeshObject("palmTree", ActorType.CollidableProp, transform3D, this.texturedModelEffect, Color.White, 1, texture, model, new MaterialProperties(0.8f, 0.8f, 0.7f));
+        //    tree.Enable(true, 1); //change to false, see what happens.
+        //    tree.ActorType = ActorType.CollidableProp;
+        //    this.objectManager.Add(tree);
+
+        #endregion
+
+        #region Rocks
+
+        //    Model model = this.modelDictionary["rock"];
+        //    texture = this.textureDictionary["rockTex"];
+        //    transform3D = new Transform3D(new Vector3(10, 50, 10), new Vector3(0, 0, 0),
+        //        new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+        //    rock = new TriangleMeshObject("rock", ActorType.CollidableProp, transform3D, this.texturedModelEffect, Color.White, 1, texture, model, new MaterialProperties(0.8f, 0.8f, 0.7f));
+        //    rock.Enable(true, 1); //change to false, see what happens.
+        //    rock.ActorType = ActorType.CollidableProp;
+        //    this.objectManager.Add(rock);
+
+        #endregion
+
+        //}
+
         private void InitializeStaticCollidableGround(int scale)
         {
             CollidableObject collidableObject = null;
@@ -647,28 +689,12 @@ namespace AtlanticDrift
             transform3D = new Transform3D(new Vector3(-90, 580, 100), new Vector3(0, 0, 0),
                 new Vector3(0.7f, 0.7f, 0.7f), Vector3.UnitX, Vector3.UnitY);
 
-            collidableObject = new CollidableObject("ground", ActorType.CollidableGround, transform3D, this.texturedModelEffect, Color.White, 1, texture, model);
-            collidableObject.AddPrimitive(new Box(transform3D.Translation, Matrix.Identity, transform3D.Scale), new MaterialProperties(0.8f, 0.8f, 0.7f));
+            collidableObject = new TriangleMeshObject("ground", ActorType.CollidableGround, transform3D, this.texturedModelEffect, Color.White, 1, texture, model, new MaterialProperties(0.8f, 0.8f, 0.7f));
             collidableObject.Enable(true, 1); //change to false, see what happens.
             this.objectManager.Add(collidableObject);
+
+
         }
-
-        //private void InitializeStaticCollidableGround2(int scale)
-        //{
-        //    CollidableObject collidableObject = null;
-        //    Transform3D transform3D = null;
-        //    Texture2D texture = null;
-
-        //    Model model = this.modelDictionary["box"];
-        //    texture = this.textureDictionary["sand"];
-        //    transform3D = new Transform3D(new Vector3(0, 5, 0), new Vector3(0, 0, 0),
-        //        new Vector3(scale, 0.01f, scale), Vector3.UnitX, Vector3.UnitY);
-
-        //    collidableObject = new CollidableObject("ground", ActorType.CollidableGround, transform3D, this.texturedModelEffect, Color.White, 1, texture, model);
-        //    collidableObject.AddPrimitive(new Box(transform3D.Translation, Matrix.Identity, transform3D.Scale), new MaterialProperties(0.8f, 0.8f, 0.7f));
-        //    collidableObject.Enable(true, 1); //change to false, see what happens.
-        //    this.objectManager.Add(collidableObject);
-        //}
 
         #endregion
 

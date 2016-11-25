@@ -39,6 +39,7 @@ namespace UDPLibrary
             this.Body.CollisionSkin.AddPrimitive(triangleMesh, materialProperties);
         }
 
+
         public override Matrix GetWorldMatrix()
         {
             return Matrix.CreateScale(this.Transform3D.Scale) *
