@@ -92,6 +92,7 @@
     <Compile Include="UDPLibrary\Controllers\Camera\SecurityController.cs" />
     <Compile Include="UDPLibrary\Controllers\Text\TextRendererController.cs" />
     <Compile Include="UDPLibrary\Curve\Camera3DTrack.cs" />
+    <Compile Include="UDPLibrary\Debug\PhysicsDebugDrawer.cs" />
     <Compile Include="UDPLibrary\Enums\BillboardType.cs" />
     <Compile Include="UDPLibrary\Enums\EventCategoryType.cs" />
     <Compile Include="UDPLibrary\Enums\OrientationType.cs" />
@@ -115,7 +116,6 @@
     <Compile Include="UDPLibrary\Curve\Transform2DCurve.cs" />
     <Compile Include="App\Data\MenuData.cs" />
     <Compile Include="UDPLibrary\Debug\BoundingBoxDrawer.cs" />
-    <Compile Include="UDPLibrary\Debug\PhysicsDebugDrawer.cs" />
     <Compile Include="UDPLibrary\Dictionary\GenericDictionary.cs" />
     <Compile Include="UDPLibrary\Enums\CameraLayoutType.cs" />
     <Compile Include="UDPLibrary\Enums\EventType.cs" />

@@ -583,6 +583,15 @@ namespace AtlanticDrift
             collidableObject = new TriangleMeshObject("volcano", ObjectType.CollidableGround, transform3D, this.texturedModelEffect, texture, model1, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
             collidableObject.Enable(true, 1); //change to false, see what happens.
             this.objectManager.Add(collidableObject);
+
+            Model model2 = this.modelDictionary["box"];
+            texture = this.textureDictionary["water"];
+            transform3D = new Transform3D(new Vector3(0, -115, 0), new Vector3(0, 0, 0),
+                new Vector3(1000, 10, 1000), Vector3.UnitX, Vector3.UnitY);
+
+            collidableObject = new TriangleMeshObject("water", ObjectType.CollidableGround, transform3D, this.texturedModelEffect, texture, model2, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            collidableObject.Enable(true, 1); //change to false, see what happens.
+            this.objectManager.Add(collidableObject);
         }
 
         private void InitializeSkyBox(int scale)
@@ -630,11 +639,11 @@ namespace AtlanticDrift
             this.objectManager.Add(clone);
 
             //water
-            clone = (TexturedPrimitiveObject)texturedPrimitive.Clone();
-            clone.Texture = this.textureDictionary["water"];
-            clone.Transform3D.Translation = new Vector3(0, 0, 0);
-            clone.Transform3D.Rotation = new Vector3(-90, -90, 0);
-            this.objectManager.Add(clone);
+            //clone = (TexturedPrimitiveObject)texturedPrimitive.Clone();
+            //clone.Texture = this.textureDictionary["water"];
+            //clone.Transform3D.Translation = new Vector3(0, 0, 0);
+            //clone.Transform3D.Rotation = new Vector3(-90, -90, 0);
+            //this.objectManager.Add(clone);
         }
 
         private void InitializeCollidableObjects()
