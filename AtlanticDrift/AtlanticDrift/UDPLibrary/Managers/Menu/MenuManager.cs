@@ -143,7 +143,7 @@ namespace UDPLibrary
         {
             //if menu is pause and we press the show menu button then show the menu
             if ((bPaused) && this.game.KeyboardManager.IsFirstKeyPress(
-                AppData.KeyPauseShowMenu))
+                KeyData.KeyPauseShowMenu))
             {
                 ShowMenu();
             }
@@ -153,8 +153,8 @@ namespace UDPLibrary
         {
             //show the menu by setting pause to false
             bPaused = false;
-
-            //to do generate an event to tell the object manager to pause...
+            //generate an event to tell the object manager to pause
+            EventDispatcher.Publish(new EventData("menu event", this, EventType.OnPause, EventCategoryType.MainMenu));
 
             //if the mouse is invisible then show it
             if (!this.game.IsMouseVisible)
@@ -165,8 +165,8 @@ namespace UDPLibrary
         {
             //hide the menu by setting pause to true
             bPaused = true;
-
-            //to do generate an event to tell the object manager to pause...
+            //generate an event to tell the object manager to unpause
+            EventDispatcher.Publish(new EventData("menu event", this, EventType.OnPlay, EventCategoryType.MainMenu));
 
             //if the mouse is invisible then show it
             if (this.game.IsMouseVisible)
@@ -180,7 +180,8 @@ namespace UDPLibrary
             //hide the menu by setting pause to true
             bPaused = true;
 
-            //to do generate an event to tell the object manager to pause...
+            //generate an event to tell the main method to restart
+            EventDispatcher.Publish(new EventData("menu event", this, EventType.OnRestart, EventCategoryType.MainMenu));
 
             //if the mouse is invisible then show it
             if (this.game.IsMouseVisible)
@@ -189,9 +190,8 @@ namespace UDPLibrary
 
         private void ExitGame()
         {
-            //to do generate an event to tell the object manager to exit...
-            this.game.Exit();
-
+            //generate an event to tell the main method to exit - need to add code in main to catch this event
+            EventDispatcher.Publish(new EventData("menu event", this, EventType.OnExit, EventCategoryType.MainMenu));
         }
 
         //iterate through each menu item and see if it is "highlighted" or "highlighted and clicked upon"

@@ -1,29 +1,30 @@
-﻿using System;
-using AtlanticDrift;
+﻿using AtlanticDrift;
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace UDPLibrary
 {
-    public class Actor : IActor, ICloneable
+    public class Actor : IActor
     {
-        #region Variables
         public static Main game;
 
+        #region Fields
         private string id;
-        private ActorType actorType;
-        private StatusType statusType;
+        private ObjectType objectType;
+        private Transform3D transform;
+        private List<IController> controllerList;
         #endregion
 
         #region Properties
-        public ActorType ActorType
+        public List<IController> ControllerList
         {
             get
             {
-                return this.actorType;
+                return this.controllerList;
             }
             set
             {
-                this.actorType = value;
+                controllerList = value;
             }
         }
         public string ID
@@ -37,53 +38,91 @@ namespace UDPLibrary
                 this.id = value;
             }
         }
-        public StatusType StatusType
+        public ObjectType ObjectType
         {
             get
             {
-                return this.statusType;
+                return this.objectType;
             }
             set
             {
-                this.statusType = value;
+                this.objectType = value;
             }
         }
+        public Transform3D Transform3D
+        {
+            get
+            {
+                return this.transform;
+            }
+            set
+            {
+                this.transform = value;
+            }
+        }
+        public Matrix World
+        {
+            get
+            {
+                return this.transform.World;
+            }
+        }
+
         #endregion
 
-        public Actor(string id, ActorType actorType, StatusType statusType)
+        public Actor(string id, ObjectType objectType, Transform3D transform)
         {
             this.id = id;
-            this.actorType = actorType;
-            this.statusType = statusType;
+            this.objectType = objectType;
+            this.transform = transform;
         }
+
+        public void AddController(IController controller)
+        {
+            if (this.controllerList == null)
+                this.controllerList = new List<IController>();
+
+            //contains? hash code and equals?
+            this.controllerList.Add(controller);
+        }
+
+        public void RemoveController(string name)
+        {
+            for (int i = 0; i < this.controllerList.Count; i++)
+            {
+                if (this.controllerList[i].GetName().Equals(name))
+                {
+                    this.controllerList.RemoveAt(i);
+                }
+            }
+        }
+
+        public void RemoveAllControllers()
+        {
+            if (this.controllerList != null)
+                this.controllerList.Clear();
+        }
+
+
+
         public virtual void Update(GameTime gameTime)
         {
-        }
-        public virtual void Draw(GameTime gameTime)
-        {
+            if (this.controllerList != null)
+            {
+                foreach (IController controller in this.controllerList)
+                    controller.Update(gameTime);
+            }
         }
 
         public virtual Matrix GetWorldMatrix()
         {
-            return Matrix.Identity; //does nothing - see derived classes especially CollidableObject
-        }
-        public virtual ActorType GetActorType()
-        {
-            return this.actorType;
-        }
-        public virtual string getID()
-        {
-            return this.id;
+            return this.transform.World;
         }
 
-        public object Clone()
+        public virtual void Remove()
         {
-            return this.MemberwiseClone(); //deep because all variables are either C# types, structs, or enums
-        }
-
-        public virtual bool Remove()
-        {
-            return false; //see implementation in child classes e.g. ModelObject
+            //tag for garbage collection
+            this.transform = null;
         }
     }
 }

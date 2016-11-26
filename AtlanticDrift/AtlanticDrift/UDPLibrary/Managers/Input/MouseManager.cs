@@ -2,10 +2,11 @@
 Function: 		Provide mouse input functions
 Author: 		NMCG
 Version:		1.0
-Date Updated:	26/9/16
+Date Updated:	26/1/16
 Bugs:			None
 Fixes:			None
 */
+
 
 using AtlanticDrift;
 using JigLibX.Collision;
@@ -15,12 +16,6 @@ using Microsoft.Xna.Framework.Input;
 
 namespace UDPLibrary
 {
-    /// <summary>
-    /// Provides methods to determine the state of the mouse.
-    /// </summary>
-    /// 
-
-    //used for ray picking
     class ImmovableSkinPredicate : CollisionSkinPredicate1
     {
         public override bool ConsiderSkin(CollisionSkin skin0)
@@ -31,6 +26,10 @@ namespace UDPLibrary
                 return false;
         }
     }
+
+    /// <summary>
+    /// Provides methods to determine the state of the mouse.
+    /// </summary>
     public class MouseManager : GameComponent
     {
         #region Variables
@@ -38,14 +37,8 @@ namespace UDPLibrary
         private MouseState newState, oldState;
         #endregion
 
+        private static float MouseSensitivity = 1;
         #region Properties
-        public Microsoft.Xna.Framework.Rectangle Bounds
-        {
-            get
-            {
-                return new Microsoft.Xna.Framework.Rectangle(this.newState.X, this.newState.Y, 1, 1);
-            }
-        }
         public bool IsVisible
         {
             get
@@ -62,6 +55,13 @@ namespace UDPLibrary
             get
             {
                 return new Vector2(this.newState.X, this.newState.Y);
+            }
+        }
+        public Microsoft.Xna.Framework.Rectangle Bounds
+        {
+            get
+            {
+                return new Microsoft.Xna.Framework.Rectangle(this.newState.X, this.newState.Y, 1, 1);
             }
         }
         #endregion
@@ -105,7 +105,7 @@ namespace UDPLibrary
             float deltaPositionLength = new Vector2(newState.X - oldState.X,
                 newState.Y - oldState.Y).Length();
 
-            return (deltaPositionLength > AppData.MouseSensitivity) ? true : false;
+            return (deltaPositionLength > MouseSensitivity) ? true : false;
         }
         public bool IsLeftButtonClickedOnce()
         {
@@ -131,13 +131,6 @@ namespace UDPLibrary
             this.newState.Y - position.Y);
         }
 
-        //Calculates the mouse pointer distance from the screen centre
-        public Vector2 GetDeltaFromCentre()
-        {
-            return new Vector2(this.newState.X - this.game.ScreenCentre.X,
-                        this.newState.Y - this.game.ScreenCentre.Y);
-        }
-
         //has the mouse state changed since the last update?
         public bool IsStateChanged()
         {
@@ -158,7 +151,6 @@ namespace UDPLibrary
             Mouse.SetPosition((int)position.X, (int)position.Y);
         }
 
-        #region Ray Picking
         //get a ray positioned at the mouse's location on the screen - used for picking 
         public Microsoft.Xna.Framework.Ray GetMouseRay(Camera3D camera)
         {
@@ -195,7 +187,7 @@ namespace UDPLibrary
             far = camera.Viewport.Unproject(far, camera.ProjectionParameters.Projection, camera.View, Matrix.Identity);
 
             //generate a ray to use for intersection tests
-            return Vector3.Normalize(far - near);
+            return far - near;
         }
 
         float frac; CollisionSkin skin;
@@ -235,6 +227,5 @@ namespace UDPLibrary
 
             return null;
         }
-        #endregion
     }
 }

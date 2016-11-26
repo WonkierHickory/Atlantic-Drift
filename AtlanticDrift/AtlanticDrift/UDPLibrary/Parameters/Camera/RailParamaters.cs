@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using Microsoft.Xna.Framework;
 
 namespace UDPLibrary
@@ -63,17 +66,6 @@ namespace UDPLibrary
                 this.isDirty = true;
             }
         }
-        public string ID
-        {
-            get
-            {
-                return this.id;
-            }
-            set
-            {
-                this.id = value;
-            }
-        }
         #endregion
 
         public RailParameters(string id, Vector3 start, Vector3 end)
@@ -106,7 +98,7 @@ namespace UDPLibrary
             }
         }
 
-        //add clone...
+        //todo - Add clone...
 
 
     }
