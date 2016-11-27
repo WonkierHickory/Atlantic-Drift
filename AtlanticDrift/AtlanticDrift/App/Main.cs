@@ -153,6 +153,8 @@ namespace AtlanticDrift
 
             this.fontDictionary.Add("menu", Content.Load<SpriteFont>("Assets/Fonts/menu"));
 
+            this.fontDictionary.Add("debug", Content.Load<SpriteFont>("Assets/Debug/Fonts/debug"));
+
         }
 
         private void LoadModels()
@@ -222,6 +224,12 @@ namespace AtlanticDrift
 
             this.textureDictionary.Add("audiomenu",
             Content.Load<Texture2D>("Assets/Textures/Menu/audiomenu1"));
+
+            this.textureDictionary.Add("ml",
+            Content.Load<Texture2D>("Assets/Debug/Textures/ml"));
+
+            this.textureDictionary.Add("slj",
+            Content.Load<Texture2D>("Assets/Debug/Textures/slj"));
 
             #endregion
 
@@ -478,13 +486,12 @@ namespace AtlanticDrift
 
             //use these for all our controllable and non-controllable clones
             PawnCamera3D clonePawnCamera = null;
-            Camera3D cloneFixedCamera = null;
 
             #region Camera Archetypes 
             //notice we clone the archetypes but never add controllers - we add controllers to the clones
             PawnCamera3D pawnCameraArchetype = new PawnCamera3D("pawn camera archetype",
                 ObjectType.PawnCamera,
-                    new Transform3D(new Vector3(-1600, 50, -2750), -Vector3.UnitZ, Vector3.UnitY),
+                    new Transform3D(new Vector3(-1638, 50, -2775), -Vector3.UnitZ, Vector3.UnitY),
                         ProjectionParameters.standardBanter, this.graphics.GraphicsDevice.Viewport);
 
             Camera3D fixedCameraArchetype = new Camera3D("fixed camera archetype", ObjectType.FixedCamera);
@@ -502,29 +509,9 @@ namespace AtlanticDrift
             clonePawnCamera = (PawnCamera3D)pawnCameraArchetype.Clone();
 
             clonePawnCamera.ID = "non-collidable 1st person front";
-            clonePawnCamera.Transform3D.Translation = new Vector3(-10, 0, 30);
+            clonePawnCamera.Transform3D.Translation = new Vector3(-10, 50, 30);
             clonePawnCamera.AddController(new FirstPersonController(clonePawnCamera + " controller", clonePawnCamera, KeyData.MoveKeys, GameData.CameraMoveSpeed, GameData.CameraStrafeSpeed, GameData.CameraRotationSpeed));
             this.cameraManager.Add(cameraLayoutName, clonePawnCamera);
-            #endregion
-
-            #region Non-collidable Fixed (i.e. no controller) Left Camera
-            cloneFixedCamera = (Camera3D)fixedCameraArchetype.Clone();
-
-            cloneFixedCamera.ID = "non-collidable front left fixed";
-            cloneFixedCamera.Transform3D.Translation = new Vector3(-50, 5, 0); //on -ve X-axis 
-            cloneFixedCamera.Transform3D.Look = Vector3.UnitX; //looking at origin
-            cloneFixedCamera.Transform3D.Up = Vector3.UnitY;
-            this.cameraManager.Add(cameraLayoutName, cloneFixedCamera);
-            #endregion
-
-            #region Non-collidable Fixed (i.e. no controller) Top Camera
-            cloneFixedCamera = (Camera3D)fixedCameraArchetype.Clone();
-
-            cloneFixedCamera.ID = "non-collidable front top fixed";
-            cloneFixedCamera.Transform3D.Translation = new Vector3(0, 50, 0); //on +ve Y-axis 
-            cloneFixedCamera.Transform3D.Look = -Vector3.UnitY; //looking down at origin
-            cloneFixedCamera.Transform3D.Up = -Vector3.UnitZ;
-            this.cameraManager.Add(cameraLayoutName, cloneFixedCamera);
             #endregion
 
             //set the layout - we've only got one!
@@ -764,12 +751,12 @@ namespace AtlanticDrift
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            distance += 0.1f;
             angle += 0.01f;  // rotate the emitter around a little bit
-            listener.Position = Vector3.Zero;  // the listener just stays at the origin the whole time
+            listener.Position = new Vector3(500, 20, 500);  // the listener just stays at the origin the whole time
             emitter.Position = CalculateLocation(angle, distance);  // calculate the location of the emitter again
 
             demoSoundManager(emitter);
+            demoCameraLayout();
 
             this.soundManager.Update(gameTime);
 
@@ -783,8 +770,8 @@ namespace AtlanticDrift
             this.graphics.GraphicsDevice.Viewport = this.cameraManager.ActiveCamera.Viewport;
             base.Draw(gameTime);
 
-            //if (this.menuManager.Pause)
-            //    drawDebugInfo();
+            if (this.menuManager.Pause)
+                drawDebugInfo();
         }
 
         #endregion
@@ -806,6 +793,45 @@ namespace AtlanticDrift
                 (float)Math.Cos(angle) * distance,
                 0,
                 (float)Math.Sin(angle) * distance);
+        }
+
+        private void demoCameraLayout()
+        {
+            if (this.keyboardManager.IsFirstKeyPress(Keys.F1))
+                this.cameraManager.CycleCamera();
+        }
+
+        Vector2 positionOffset = new Vector2(0, 25);
+        Color debugColor = Color.Red;
+        SpriteFont debugFont = null;
+
+        private void drawDebugInfo()
+        {
+            //draw debug text after base.Draw() otherwise it will be behind the scene!
+            if (debugFont == null)
+                debugFont = this.fontDictionary["debug"];
+
+            Vector2 debugPosition = new Vector2(20, 20);
+
+            this.spriteBatch.Begin();
+            this.spriteBatch.DrawString(debugFont, "ID:         " + this.cameraManager.ActiveCamera.ID, debugPosition, debugColor);
+            debugPosition += positionOffset;
+
+            this.spriteBatch.DrawString(debugFont, "Object Type:" + this.cameraManager.ActiveCamera.ObjectType, debugPosition, debugColor);
+            debugPosition += positionOffset;
+
+            this.spriteBatch.DrawString(debugFont, "Translation:" + MathUtility.Round(this.cameraManager.ActiveCamera.Transform3D.Translation, 1), debugPosition, debugColor);
+            debugPosition += positionOffset;
+
+            this.spriteBatch.DrawString(debugFont, "Look:       " + MathUtility.Round(this.cameraManager.ActiveCamera.Transform3D.Look, 1), debugPosition, debugColor);
+            debugPosition += positionOffset;
+
+            this.spriteBatch.DrawString(debugFont, "Up:         " + MathUtility.Round(this.cameraManager.ActiveCamera.Transform3D.Up, 1), debugPosition, debugColor);
+            debugPosition += positionOffset;
+
+            this.spriteBatch.DrawString(debugFont, "F1 - cycle cameras, WASD - move pawn camera, Space - Jump(1st person pawn only)", debugPosition, debugColor);
+            this.spriteBatch.End();
+
         }
 
         #endregion
