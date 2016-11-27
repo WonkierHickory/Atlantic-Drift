@@ -202,19 +202,19 @@ namespace AtlanticDrift
             #region other
 
             this.textureDictionary.Add("controlsmenu",
-            Content.Load<Texture2D>("Assets/Textures/Menu/controlsmenu"));
+            Content.Load<Texture2D>("Assets/Textures/Menu/controlsmenu1"));
 
             this.textureDictionary.Add("exitmenu",
-            Content.Load<Texture2D>("Assets/Textures/Menu/exitmenu"));
+            Content.Load<Texture2D>("Assets/Textures/Menu/exitmenu1"));
 
             this.textureDictionary.Add("exitmenuwithtrans",
             Content.Load<Texture2D>("Assets/Textures/Menu/exitmenuwithtrans"));
 
             this.textureDictionary.Add("mainmenu",
-            Content.Load<Texture2D>("Assets/Textures/Menu/mainmenu"));
+            Content.Load<Texture2D>("Assets/Textures/Menu/mainmenu1"));
 
             this.textureDictionary.Add("audiomenu",
-            Content.Load<Texture2D>("Assets/Textures/Menu/audiomenu"));
+            Content.Load<Texture2D>("Assets/Textures/Menu/audiomenu1"));
 
             #endregion
 
@@ -437,7 +437,7 @@ namespace AtlanticDrift
                                                 this.textureDictionary["mainmenu"],
                                                 this.textureDictionary["audiomenu"],
                                                  this.textureDictionary["controlsmenu"],
-                                                this.textureDictionary["exitmenuwithtrans"]
+                                                this.textureDictionary["exitmenu"]
                                             };
 
             this.menuManager = new MenuManager(this, menuTexturesArray, this.fontDictionary["menu"], MenuData.MenuTexturePadding, MenuData.MenuTextureColor);
