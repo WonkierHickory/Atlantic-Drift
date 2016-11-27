@@ -484,7 +484,7 @@ namespace AtlanticDrift
             //notice we clone the archetypes but never add controllers - we add controllers to the clones
             PawnCamera3D pawnCameraArchetype = new PawnCamera3D("pawn camera archetype",
                 ObjectType.PawnCamera,
-                    new Transform3D(new Vector3(0, 40, 50), -Vector3.UnitZ, Vector3.UnitY),
+                    new Transform3D(new Vector3(-1600, 50, -2750), -Vector3.UnitZ, Vector3.UnitY),
                         ProjectionParameters.standardBanter, this.graphics.GraphicsDevice.Viewport);
 
             Camera3D fixedCameraArchetype = new Camera3D("fixed camera archetype", ObjectType.FixedCamera);
@@ -494,7 +494,7 @@ namespace AtlanticDrift
             clonePawnCamera = (PawnCamera3D)pawnCameraArchetype.Clone();
             clonePawnCamera.ID = "collidable 1st person front";
             clonePawnCamera.AddController(new CollidableFirstPersonController(clonePawnCamera + " controller", clonePawnCamera, KeyData.MoveKeys, GameData.CameraMoveSpeed,
-                GameData.CameraStrafeSpeed, GameData.CameraRotationSpeed, 2f, 5, 1, 1, 1, Vector3.Zero));
+                GameData.CameraStrafeSpeed, GameData.CameraRotationSpeed, 2f, 40, 1, 1, 1, Vector3.Zero));
             this.cameraManager.Add(cameraLayoutName, clonePawnCamera);
             #endregion
 
@@ -535,7 +535,7 @@ namespace AtlanticDrift
         #region Initialize Drawn Objects
 
         #region Non-Collidable
-
+ 
         private void InitializeNonCollidableModels()
         {
             

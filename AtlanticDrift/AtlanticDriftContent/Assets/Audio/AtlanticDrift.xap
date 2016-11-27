@@ -212,7 +212,7 @@ Global Settings
         Value = 0.000000;
         Initial Value = 0.000000;
         Min = 0.000000;
-        Max = 5000.000000;
+        Max = 200.000000;
     }
 
     RPC
@@ -221,7 +221,7 @@ Global Settings
 
         RPC Curve
         {
-            Name = Sound::e7ab1de6-00db-4bcb-bf77-711e76ba92a0;
+            Name = Sound::a7ec9285-1b03-43f7-a404-44e451de705a;
             Property = 0;
             Sound = 1;
             Line Color = 4279141697;
@@ -241,43 +241,43 @@ Global Settings
 
             RPC Point
             {
-                X = 603.448303;
-                Y = -1905.882324;
+                X = 11.822660;
+                Y = -1729.411743;
                 Curve = 0;
             }
 
             RPC Point
             {
-                X = 1403.940918;
-                Y = -3882.352783;
+                X = 35.960590;
+                Y = -4023.529541;
                 Curve = 0;
             }
 
             RPC Point
             {
-                X = 2032.019653;
-                Y = -5611.764648;
+                X = 66.009850;
+                Y = -5788.235352;
                 Curve = 0;
             }
 
             RPC Point
             {
-                X = 2844.827637;
-                Y = -7129.412109;
+                X = 101.970444;
+                Y = -7729.412109;
                 Curve = 0;
             }
 
             RPC Point
             {
-                X = 3866.995117;
-                Y = -8611.764648;
+                X = 149.261078;
+                Y = -8894.118164;
                 Curve = 0;
             }
 
             RPC Point
             {
-                X = 5000.000000;
-                Y = -9458.823242;
+                X = 200.000000;
+                Y = -9529.412109;
                 Curve = 0;
             }
         }
