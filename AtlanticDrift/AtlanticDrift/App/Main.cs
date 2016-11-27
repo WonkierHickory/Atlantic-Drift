@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System;
 using System.Collections.Generic;
+using Microsoft.Xna.Framework.Audio;
 
 namespace AtlanticDrift
 {
@@ -28,7 +29,7 @@ namespace AtlanticDrift
         private KeyboardManager keyboardManager;
         private MouseManager mouseManager;
         private ObjectManager objectManager;
-        //private SoundManager soundManager;
+        private SoundManager soundManager;
         private PhysicsManager physicsManager;
         private UIManager uiManager;
         private MenuManager menuManager;
@@ -41,6 +42,12 @@ namespace AtlanticDrift
         private GenericDictionary<string, Camera3DTrack> trackDictionary;
 
         private EventDispatcher eventDispatcher;
+
+        private AudioEmitter emitter = new AudioEmitter();
+        private AudioListener listener = new AudioListener();
+
+        private float angle = 0;
+        private float distance = 5;
 
         #endregion
 
@@ -89,13 +96,13 @@ namespace AtlanticDrift
             }
         }
         //nmcg - 18.3.16
-        //public SoundManager SoundManager
-        //{
-        //    get
-        //    {
-        //        return soundManager;
-        //    }
-        //}
+        public SoundManager SoundManager
+        {
+            get
+            {
+                return soundManager;
+            }
+        }
         public CameraManager CameraManager
         {
             get
@@ -422,11 +429,11 @@ namespace AtlanticDrift
             Components.Add(this.objectManager);
 
             //sound
-            //this.soundManager = new SoundManager(this,
-            //     "Content\\Assets\\Audio\\Demo2DSound.xgs",
-            //     "Content\\Assets\\Audio\\WaveBank1.xwb",
-            //    "Content\\Assets\\Audio\\SoundBank1.xsb");
-            //Components.Add(this.soundManager);
+            this.soundManager = new SoundManager(this,
+                 "Content\\Assets\\Audio\\AtlanticDrift.xgs",
+                 "Content\\Assets\\Audio\\WaveBank.xwb",
+                "Content\\Assets\\Audio\\SoundBank.xsb");
+            Components.Add(this.soundManager);
 
 
             this.uiManager = new UIManager(this, 10, 10);
@@ -757,6 +764,15 @@ namespace AtlanticDrift
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
+            distance += 0.1f;
+            angle += 0.01f;  // rotate the emitter around a little bit
+            listener.Position = Vector3.Zero;  // the listener just stays at the origin the whole time
+            emitter.Position = CalculateLocation(angle, distance);  // calculate the location of the emitter again
+
+            demoSoundManager(emitter);
+
+            this.soundManager.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -769,6 +785,27 @@ namespace AtlanticDrift
 
             //if (this.menuManager.Pause)
             //    drawDebugInfo();
+        }
+
+        #endregion
+
+        #region demo
+
+        private void demoSoundManager(AudioEmitter emitter)
+        {
+            //Notice that the cue name is taken from inside SoundBank1
+            //To see the sound bank contents open the file Demo2DSound.xap using XACT3 found through the start menu on Windows
+
+            this.soundManager.Play3DCue("ocean", emitter);
+            
+        }
+
+        private Vector3 CalculateLocation(float angle, float distance)
+        {
+            return new Vector3(
+                (float)Math.Cos(angle) * distance,
+                0,
+                (float)Math.Sin(angle) * distance);
         }
 
         #endregion

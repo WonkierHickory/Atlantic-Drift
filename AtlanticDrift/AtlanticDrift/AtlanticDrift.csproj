@@ -62,12 +62,13 @@
   <ItemGroup>
     <Reference Include="JigLibX, Version=0.3.1.0, Culture=neutral, PublicKeyToken=96bb577564343f16, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\GDApp - Halloween - Collision Detection &amp; Physics - 3\GDApp\Dependencies\Physics\JigLibX.dll</HintPath>
+      <HintPath>..\Dependencies\Physics\JigLibX.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.GamerServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Xact, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Xml" />
@@ -131,6 +132,8 @@
     <Compile Include="UDPLibrary\Managers\Physics\PhysicsManager.cs" />
     <Compile Include="UDPLibrary\Managers\Menu\MenuItem.cs" />
     <Compile Include="UDPLibrary\Managers\Menu\MenuManager.cs" />
+    <Compile Include="UDPLibrary\Managers\Sound\Cue3D.cs" />
+    <Compile Include="UDPLibrary\Managers\Sound\SoundManager.cs" />
     <Compile Include="UDPLibrary\Objects\Collidable\Player\Animated\AnimatedPlayerObject.cs" />
     <Compile Include="UDPLibrary\Objects\Collidable\Zones\AlarmZoneObject.cs" />
     <Compile Include="UDPLibrary\Objects\Collidable\Zones\CameraZoneObject.cs" />
@@ -177,12 +180,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AtlanticDriftContent\AtlanticDriftContent.contentproj">
-      <Name>AtlanticDriftContent</Name>
-      <XnaReferenceType>Content</XnaReferenceType>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
@@ -201,7 +198,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="UDPLibrary\Controllers\Video\" />
-    <Folder Include="UDPLibrary\Managers\Sound\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AtlanticDriftContent\AtlanticDriftContent.contentproj">
+      <Project>{33AE6E35-ABC4-40ED-A5E6-946AA387113D}</Project>
+      <Name>AtlanticDriftContent</Name>
+      <XnaReferenceType>Content</XnaReferenceType>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
