@@ -80,7 +80,6 @@ namespace UDPLibrary
             mouseDelta *= gameTime.ElapsedGameTime.Milliseconds;
             mouseDelta *= 0.01f;
             this.ParentActor.Transform3D.RotateBy(new Vector3(-mouseDelta, 0));
-
         }
 
         public virtual void HandleKeyboardInput(GameTime gameTime)

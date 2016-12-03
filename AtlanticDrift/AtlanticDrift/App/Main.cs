@@ -162,13 +162,17 @@ namespace AtlanticDrift
 
             this.modelDictionary.Add("foliage", Content.Load<Model>("Assets/Models/AnotherFool"));
 
-            //this.modelDictionary.Add("tree", Content.Load<Model>("Assets/Models/PalmTree"));
+            this.modelDictionary.Add("tree", Content.Load<Model>("Assets/Models/tree"));
+
+            this.modelDictionary.Add("treeLeaf", Content.Load<Model>("Assets/Models/leaf"));
 
             this.modelDictionary.Add("puzzleChest", Content.Load<Model>("Assets/Models/chest"));
 
             this.modelDictionary.Add("radio", Content.Load<Model>("Assets/Models/Radio"));
 
             this.modelDictionary.Add("volcano", Content.Load<Model>("Assets/Models/Volcano"));
+
+            this.modelDictionary.Add("rock", Content.Load<Model>("Assets/Models/Rocks"));
 
         }
 
@@ -233,6 +237,10 @@ namespace AtlanticDrift
 
             this.textureDictionary.Add("mouseicons", 
                 Content.Load<Texture2D>("Assets/Textures/UI/mouseicons"));
+
+
+            this.textureDictionary.Add("test",
+                Content.Load<Texture2D>("Assets/Textures/island/test"));
 
             #endregion
 
@@ -471,16 +479,27 @@ namespace AtlanticDrift
             this.texturedPrimitiveEffect = new BasicEffect(graphics.GraphicsDevice);
             this.texturedPrimitiveEffect.VertexColorEnabled = true;
             this.texturedPrimitiveEffect.TextureEnabled = true;
+           
 
             this.texturedModelEffect = new BasicEffect(graphics.GraphicsDevice);
             // this.texturedModelEffect.VertexColorEnabled = true; 
             this.texturedModelEffect.TextureEnabled = true;
+            this.texturedModelEffect.EnableDefaultLighting();
 
             //used for billboards
             //this.billboardEffect = Content.Load<Effect>("Assets/Effects/Billboard");
 
             //used for animated models
             //this.animatedModelEffect = Content.Load<Effect>("Assets/Effects/Animated");
+
+            //this.texturedModelEffect.FogEnabled = true;
+            //this.texturedModelEffect.FogColor = Color.LightSlateGray.ToVector3();
+            //this.texturedModelEffect.FogStart = 20.75f;
+            //this.texturedModelEffect.FogEnd = 30.25f;
+
+            //this.texturedPrimitiveEffect.FogEnabled = true;
+
+
         }
 
         private void InitializeCameras()
@@ -494,7 +513,7 @@ namespace AtlanticDrift
             //notice we clone the archetypes but never add controllers - we add controllers to the clones
             PawnCamera3D pawnCameraArchetype = new PawnCamera3D("pawn camera archetype",
                 ObjectType.PawnCamera,
-                    new Transform3D(new Vector3(-1638, 50, -2775), -Vector3.UnitZ, Vector3.UnitY),
+                    new Transform3D(new Vector3(-990, 50, -1740), -Vector3.UnitZ, Vector3.UnitY),
                         ProjectionParameters.standardBanter, this.graphics.GraphicsDevice.Viewport);
 
             Camera3D fixedCameraArchetype = new Camera3D("fixed camera archetype", ObjectType.FixedCamera);
@@ -564,9 +583,9 @@ namespace AtlanticDrift
             Texture2D texture = null;
 
             Model model = this.modelDictionary["LowPoly"];
-            texture = this.textureDictionary["sand"];
+            texture = this.textureDictionary["test"];
             transform3D = new Transform3D(new Vector3(-90, 580, 100), new Vector3(0, 0, 0),
-                new Vector3(0.7f, 0.7f, 0.7f), Vector3.UnitX, Vector3.UnitY);
+                new Vector3(0.45f, 0.7f, 0.45f), Vector3.UnitX, Vector3.UnitY);
 
             collidableObject = new TriangleMeshObject("beach", ObjectType.CollidableGround, transform3D, this.texturedModelEffect, texture, model, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
             collidableObject.Enable(true, 1); //change to false, see what happens.
@@ -574,8 +593,8 @@ namespace AtlanticDrift
 
             Model model1 = this.modelDictionary["volcano"];
             texture = this.textureDictionary["sand"];
-            transform3D = new Transform3D(new Vector3(-1000, -40, 2400), new Vector3(0, 0, 0),
-                new Vector3(4, 3, 4), Vector3.UnitX, Vector3.UnitY);
+            transform3D = new Transform3D(new Vector3(-850, -40, 1550), new Vector3(0, 0, 0),
+                new Vector3(3, 3, 3), Vector3.UnitX, Vector3.UnitY);
 
             collidableObject = new TriangleMeshObject("volcano", ObjectType.CollidableGround, transform3D, this.texturedModelEffect, texture, model1, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
             collidableObject.Enable(true, 1); //change to false, see what happens.
@@ -649,6 +668,7 @@ namespace AtlanticDrift
 
             CollidableObject chest = null;
             CollidableObject tree = null;
+            CollidableObject treeLeaf = null;
             CollidableObject rock = null;
             CollidableObject radio = null;
             CollidableObject foliage = null;
@@ -661,7 +681,7 @@ namespace AtlanticDrift
 
             Model puzzleModel = this.modelDictionary["puzzleChest"];
             texture = this.textureDictionary["chestTex"];
-            transform3D = new Transform3D(new Vector3(-482, 30, -1874), new Vector3(0, 45, 0),
+            transform3D = new Transform3D(new Vector3(-150, 30, -1000), new Vector3(0, 45, 0),
                 new Vector3(0.25f, 0.25f, 0.25f), Vector3.UnitX, Vector3.UnitY);
 
             chest = new TriangleMeshObject("treasureChest3", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
@@ -670,7 +690,7 @@ namespace AtlanticDrift
             this.objectManager.Add(chest);
 
           
-            transform3D = new Transform3D(new Vector3(-382, 30, -1800), new Vector3(0, 0, 0),
+            transform3D = new Transform3D(new Vector3(-100, 30, -920), new Vector3(0, 0, 0),
                 new Vector3(0.25f, 0.25f, 0.25f), Vector3.UnitX, Vector3.UnitY);
 
             chest = new TriangleMeshObject("treasureChest1", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
@@ -678,7 +698,7 @@ namespace AtlanticDrift
             chest.ObjectType = ObjectType.CollidableProp;
             this.objectManager.Add(chest);
 
-            transform3D = new Transform3D(new Vector3(-550, 30, -1800), new Vector3(0, 20, 0),
+            transform3D = new Transform3D(new Vector3(-200, 30, -1111), new Vector3(0, 20, 0),
                 new Vector3(0.25f, 0.25f, 0.25f), Vector3.UnitX, Vector3.UnitY);
 
             chest = new TriangleMeshObject("treasureChest2", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
@@ -686,7 +706,7 @@ namespace AtlanticDrift
             chest.ObjectType = ObjectType.CollidableProp;
             this.objectManager.Add(chest);
 
-            transform3D = new Transform3D(new Vector3(-407, 30, -1695), new Vector3(0, 20, 0),
+            transform3D = new Transform3D(new Vector3(-220, 30, -900), new Vector3(0, 20, 0),
                 new Vector3(0.25f, 0.25f, 0.25f), Vector3.UnitX, Vector3.UnitY);
 
             chest = new TriangleMeshObject("treasureChestKey", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
@@ -694,7 +714,7 @@ namespace AtlanticDrift
             chest.ObjectType = ObjectType.CollidableProp;
             this.objectManager.Add(chest);
 
-            transform3D = new Transform3D(new Vector3(-591, 30, -1712), new Vector3(0, 60, 0),
+            transform3D = new Transform3D(new Vector3(-100, 30, -1000), new Vector3(0, 60, 0),
                 new Vector3(0.25f, 0.25f, 0.25f), Vector3.UnitX, Vector3.UnitY);
 
             chest = new TriangleMeshObject("treasureChest4", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
@@ -702,7 +722,7 @@ namespace AtlanticDrift
             chest.ObjectType = ObjectType.CollidableProp;
             this.objectManager.Add(chest);
 
-            transform3D = new Transform3D(new Vector3(-518, 30, -1637), new Vector3(0, 60, 0),
+            transform3D = new Transform3D(new Vector3(-200, 30, -1000), new Vector3(0, 60, 0),
                 new Vector3(0.25f, 0.25f, 0.25f), Vector3.UnitX, Vector3.UnitY);
 
             chest = new TriangleMeshObject("treasureChest5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
@@ -712,31 +732,17 @@ namespace AtlanticDrift
 
             #endregion
 
-            #region Trees
-
-            //Model treeModel = this.modelDictionary["tree"];
-            //texture = this.textureDictionary["palmTreeTex"];
-            //transform3D = new Transform3D(new Vector3(10, 50, 10), new Vector3(0, 0, 0),
-            //    new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
-
-            //tree = new TriangleMeshObject("palmTree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            //tree.Enable(true, 1); //change to false, see what happens.
-            //tree.ObjectType = ObjectType.CollidableProp;
-            //this.objectManager.Add(tree);
-
-            #endregion
-
             #region Rocks
 
-            //Model rockModel = this.modelDictionary["rock"];
-            //texture = this.textureDictionary["rockTex"];
-            //transform3D = new Transform3D(new Vector3(10, 50, 10), new Vector3(0, 0, 0),
-            //    new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+            Model rockModel = this.modelDictionary["rock"];
+            texture = this.textureDictionary["rockTex"];
+            transform3D = new Transform3D(new Vector3(10, 0, 10), new Vector3(0, 0, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
-            //rock = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, rockModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            //rock.Enable(true, 1); //change to false, see what happens.
-            //rock.ObjectType = ObjectType.CollidableProp;
-            //this.objectManager.Add(rock);
+            rock = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, rockModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            rock.Enable(true, 1); //change to false, see what happens.
+            rock.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(rock);
 
             #endregion
 
@@ -744,7 +750,7 @@ namespace AtlanticDrift
 
             Model radioModel = this.modelDictionary["radio"];
             texture = this.textureDictionary["checkerboard"];
-            transform3D = new Transform3D(new Vector3(-405, 30, -1695), new Vector3(0, 20, 0),
+            transform3D = new Transform3D(new Vector3(-220, 30, -900), new Vector3(0, 20, 0),
                 new Vector3(0.1f, 0.1f, 0.1f), Vector3.UnitX, Vector3.UnitY);
 
             radio = new TriangleMeshObject("radio", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, radioModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
@@ -759,46 +765,6 @@ namespace AtlanticDrift
             #region Barrier
             Model foliageModel = this.modelDictionary["foliage"];
             texture = this.textureDictionary["checkerboard"];
-            transform3D = new Transform3D(new Vector3(-1288, 0, -591), new Vector3(0, 0, 0),
-                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
-
-            foliage = new TriangleMeshObject("foliage", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, foliageModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            foliage.Enable(true, 1); //change to false, see what happens.
-            foliage.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(foliage);
-
-            transform3D = new Transform3D(new Vector3(-1207, 0, -591), new Vector3(0, 0, 0),
-                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
-
-            foliage = new TriangleMeshObject("foliage", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, foliageModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            foliage.Enable(true, 1); //change to false, see what happens.
-            foliage.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(foliage);
-
-            transform3D = new Transform3D(new Vector3(-1122, 20, -491), new Vector3(0, 0, 0),
-                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
-
-            foliage = new TriangleMeshObject("foliage", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, foliageModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            foliage.Enable(true, 1); //change to false, see what happens.
-            foliage.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(foliage);
-
-            transform3D = new Transform3D(new Vector3(-1041, 20, -458), new Vector3(0, 0, 0),
-                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
-
-            foliage = new TriangleMeshObject("foliage", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, foliageModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            foliage.Enable(true, 1); //change to false, see what happens.
-            foliage.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(foliage);
-
-            transform3D = new Transform3D(new Vector3(-925, 20, -424), new Vector3(0, 0, 0),
-                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
-
-            foliage = new TriangleMeshObject("foliage", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, foliageModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            foliage.Enable(true, 1); //change to false, see what happens.
-            foliage.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(foliage);
-
             transform3D = new Transform3D(new Vector3(-737, 20, -413), new Vector3(0, 0, 0),
                 new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
@@ -895,70 +861,64 @@ namespace AtlanticDrift
             foliage.ObjectType = ObjectType.CollidableProp;
             this.objectManager.Add(foliage);
 
-            transform3D = new Transform3D(new Vector3(709, 20, 495), new Vector3(0, 0, 0),
+            #endregion
+
+            #region Trees
+            Model treeModel = this.modelDictionary["tree"];
+            texture = this.textureDictionary["checkerboard"];
+            transform3D = new Transform3D(new Vector3(-912, 90, -1611), new Vector3(0, 45, 0),
                 new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
-            foliage = new TriangleMeshObject("foliage", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, foliageModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            foliage.Enable(true, 1); //change to false, see what happens.
-            foliage.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(foliage);
+            tree = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree.Enable(true, 1); //change to false, see what happens.
+            tree.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree);
 
-            transform3D = new Transform3D(new Vector3(764, 20, 648), new Vector3(0, 0, 0),
+            Model treeLeafModel = this.modelDictionary["treeLeaf"];
+            texture = this.textureDictionary["checkerboard"];
+            transform3D = new Transform3D(new Vector3(-912, 90, -1611), new Vector3(0, 45, 0),
                 new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
-            foliage = new TriangleMeshObject("foliage", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, foliageModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            foliage.Enable(true, 1); //change to false, see what happens.
-            foliage.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(foliage);
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
 
-            transform3D = new Transform3D(new Vector3(800, 20, 808), new Vector3(0, 0, 0),
+
+
+            transform3D = new Transform3D(new Vector3(-840, 90, -1750), new Vector3(0, 260, 0),
                 new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
-            foliage = new TriangleMeshObject("foliage", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, foliageModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            foliage.Enable(true, 1); //change to false, see what happens.
-            foliage.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(foliage);
+            tree = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree.Enable(true, 1); //change to false, see what happens.
+            tree.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree);
 
-            transform3D = new Transform3D(new Vector3(831, 0, 947), new Vector3(0, 0, 0),
+            transform3D = new Transform3D(new Vector3(-840, 90, -1750), new Vector3(0, 260, 0),
                 new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
-            foliage = new TriangleMeshObject("foliage", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, foliageModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            foliage.Enable(true, 1); //change to false, see what happens.
-            foliage.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(foliage);
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
 
-            transform3D = new Transform3D(new Vector3(779, 0, 1104), new Vector3(0, 0, 0),
+
+
+            transform3D = new Transform3D(new Vector3(-840, 90, -1750), new Vector3(0, 260, 0),
                 new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
-            foliage = new TriangleMeshObject("foliage", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, foliageModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            foliage.Enable(true, 1); //change to false, see what happens.
-            foliage.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(foliage);
+            tree = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree.Enable(true, 1); //change to false, see what happens.
+            tree.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree);
 
-            transform3D = new Transform3D(new Vector3(783, 0, 1245), new Vector3(0, 0, 0),
+            transform3D = new Transform3D(new Vector3(-840, 90, -1750), new Vector3(0, 260, 0),
                 new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
-            foliage = new TriangleMeshObject("foliage", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, foliageModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            foliage.Enable(true, 1); //change to false, see what happens.
-            foliage.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(foliage);
-
-            transform3D = new Transform3D(new Vector3(766, 0, 1362), new Vector3(0, 0, 0),
-                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
-
-            foliage = new TriangleMeshObject("foliage", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, foliageModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            foliage.Enable(true, 1); //change to false, see what happens.
-            foliage.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(foliage);
-
-            transform3D = new Transform3D(new Vector3(763, 0, 1500), new Vector3(0, 0, 0),
-                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
-
-            foliage = new TriangleMeshObject("foliage", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, foliageModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            foliage.Enable(true, 1); //change to false, see what happens.
-            foliage.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(foliage);
-
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
             #endregion
 
             #endregion
@@ -991,7 +951,7 @@ namespace AtlanticDrift
                 this.Exit();
 
             angle += 0.01f;
-            listener.Position = Vector3.Zero;  // the listener just stays at the origin the whole time
+            listener.Position = this.cameraManager.ActiveCamera.Transform3D.Translation;
             emitter.Position = CalculateLocation(angle, distance);
 
             
@@ -999,6 +959,7 @@ namespace AtlanticDrift
             demoCameraLayout();
 
             this.soundManager.Update(gameTime);
+            
 
             base.Update(gameTime);
         }
@@ -1020,8 +981,6 @@ namespace AtlanticDrift
 
         private void demoSoundManager(AudioEmitter emitter)
         {
-            //Notice that the cue name is taken from inside SoundBank1
-            //To see the sound bank contents open the file Demo2DSound.xap using XACT3 found through the start menu on Windows
             this.soundManager.Play3DCue("ocean", emitter);
             
         }

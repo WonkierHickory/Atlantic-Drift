@@ -132,6 +132,8 @@
     <Compile Include="UDPLibrary\Managers\Physics\PhysicsManager.cs" />
     <Compile Include="UDPLibrary\Managers\Menu\MenuItem.cs" />
     <Compile Include="UDPLibrary\Managers\Menu\MenuManager.cs" />
+    <Compile Include="UDPLibrary\Managers\Puzzle\PuzzleItem.cs" />
+    <Compile Include="UDPLibrary\Managers\Puzzle\PuzzleManager.cs" />
     <Compile Include="UDPLibrary\Managers\Sound\Cue3D.cs" />
     <Compile Include="UDPLibrary\Managers\Sound\SoundManager.cs" />
     <Compile Include="UDPLibrary\Objects\Collidable\Player\Animated\AnimatedPlayerObject.cs" />
