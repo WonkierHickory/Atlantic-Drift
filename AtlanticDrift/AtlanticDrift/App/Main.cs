@@ -1036,7 +1036,7 @@ namespace AtlanticDrift
             {
                 #region Menu
                 this.soundManager.Play3DCue("menu", emitter);
-                this.soundManager.ResumeCue("menu");
+                this.soundManager.Resume3DCue("menu");
                 #endregion
 
                 #region In-Game
