@@ -137,9 +137,34 @@ namespace AtlanticDrift
         public virtual void eventDispatcher_MainMenuChanged(EventData eventData)
         {
             if (eventData.EventType == EventType.OnExit)
+            {
                 Exit();
+            }
             else if (eventData.EventType == EventType.OnRestart)
+            {
                 this.LoadGame();
+            }
+
+
+            if (eventData.EventCategoryType == EventCategoryType.MainMenu)
+                this.soundManager.PlayCue("click");
+
+            //if(eventData.EventType == EventType.OnVolumeUp)
+            //this.soundManager.
+
+            //if(eventData.EventType == EventType.OnVolumeDown)
+            //this.soundManager.
+
+            //if (eventData.EventType == EventType.OnMute)
+            //    this.soundManager.ChangeVolume(0, "click");
+        }
+
+        public virtual void eventDispatcher_ZoneChanged(EventData eventData)
+        {
+            if (eventData.EventType == EventType.OnZoneEnter)
+            {
+
+            }
         }
         #endregion
 
@@ -159,6 +184,8 @@ namespace AtlanticDrift
             this.modelDictionary.Add("box", Content.Load<Model>("Assets/Models/box"));
 
             this.modelDictionary.Add("LowPoly", Content.Load<Model>("Assets/Models/LowPolyIdea"));
+
+            this.modelDictionary.Add("islandBarrier", Content.Load<Model>("Assets/Models/islandBarrier"));
 
             this.modelDictionary.Add("foliage", Content.Load<Model>("Assets/Models/AnotherFool"));
 
@@ -308,6 +335,8 @@ namespace AtlanticDrift
 
             #region Event Handling
             this.eventDispatcher.MainMenuChanged += new EventDispatcher.MainMenuEventHandler(eventDispatcher_MainMenuChanged);
+
+            this.eventDispatcher.ZoneChanged += new EventDispatcher.ZoneEventHandler(eventDispatcher_ZoneChanged);
             #endregion
 
             base.Initialize();
@@ -588,6 +617,15 @@ namespace AtlanticDrift
                 new Vector3(0.45f, 0.7f, 0.45f), Vector3.UnitX, Vector3.UnitY);
 
             collidableObject = new TriangleMeshObject("beach", ObjectType.CollidableGround, transform3D, this.texturedModelEffect, texture, model, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            collidableObject.Enable(true, 1); //change to false, see what happens.
+            this.objectManager.Add(collidableObject);
+
+            Model modelBarrier = this.modelDictionary["islandBarrier"];
+            texture = this.textureDictionary["test"];
+            transform3D = new Transform3D(new Vector3(-90, 0, 100), new Vector3(0, 0, 0),
+                new Vector3(0.45f, 0.7f, 0.45f), Vector3.UnitX, Vector3.UnitY);
+
+            collidableObject = new TriangleMeshObject("beach", ObjectType.CollidableGround, transform3D, this.texturedModelEffect, texture, modelBarrier, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
             collidableObject.Enable(true, 1); //change to false, see what happens.
             this.objectManager.Add(collidableObject);
 
@@ -981,7 +1019,30 @@ namespace AtlanticDrift
 
         private void demoSoundManager(AudioEmitter emitter)
         {
-            this.soundManager.Play3DCue("ocean", emitter);
+
+            if (this.menuManager.Pause)
+            {
+                #region In-Game
+                this.soundManager.Play3DCue("ocean", emitter);
+                this.soundManager.Resume3DCue("ocean");
+                #endregion
+
+                #region Menu
+                this.soundManager.Pause3DCue("menu");
+                #endregion
+
+            }
+            if (!this.menuManager.Pause)
+            {
+                #region Menu
+                this.soundManager.Play3DCue("menu", emitter);
+                this.soundManager.ResumeCue("menu");
+                #endregion
+
+                #region In-Game
+                this.soundManager.Pause3DCue("ocean");
+                #endregion
+            }
             
         }
 

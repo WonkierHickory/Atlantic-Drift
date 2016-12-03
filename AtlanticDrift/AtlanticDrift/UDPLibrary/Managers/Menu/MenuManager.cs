@@ -281,19 +281,20 @@ namespace UDPLibrary
             }
             else if (name.Equals(MenuData.StringMenuVolumeUp))
             {
-                //publish an event to be received by the sound manager
+                EventDispatcher.Publish(new EventData("menu event", this, EventType.OnVolumeUp, EventCategoryType.MainMenu));
             }
             else if (name.Equals(MenuData.StringMenuVolumeDown))
             {
-                //publish an event to be received by the sound manager
+                EventDispatcher.Publish(new EventData("menu event", this, EventType.OnVolumeDown, EventCategoryType.MainMenu));
             }
             else if (name.Equals(MenuData.StringMenuVolumeMute))
             {
-                //publish an event to be received by the sound manager
+                EventDispatcher.Publish(new EventData("menu event", this, EventType.OnMute, EventCategoryType.MainMenu));
             }
             else if (name.Equals(MenuData.StringMenuBack))
             {
                 ShowMainMenuScreen();
+                EventDispatcher.Publish(new EventData("menu event", this, EventType.OnClick, EventCategoryType.MainMenu));
             }
             else if (name.Equals(MenuData.StringMenuExitYes))
             {
@@ -302,6 +303,7 @@ namespace UDPLibrary
             else if (name.Equals(MenuData.StringMenuExitNo))
             {
                 ShowMainMenuScreen();
+                EventDispatcher.Publish(new EventData("menu event", this, EventType.OnClick, EventCategoryType.MainMenu));
             }
 
             //add your new menu actions here...
@@ -315,6 +317,8 @@ namespace UDPLibrary
             Add(menuBack);
             //set the background texture
             currentMenuTextureIndex = MenuData.TextureIndexControlsMenu;
+
+            EventDispatcher.Publish(new EventData("menu event", this, EventType.OnClick, EventCategoryType.MainMenu));
         }
 
         //add your ShowXMenuScreen() methods here...
@@ -331,6 +335,8 @@ namespace UDPLibrary
             Add(menuExit);
             //set the background texture
             currentMenuTextureIndex = MenuData.TextureIndexMainMenu;
+
+            //EventDispatcher.Publish(new EventData("menu event", this, EventType.OnClick, EventCategoryType.MainMenu));
         }
 
         private void ShowAudioMenuScreen()
@@ -344,6 +350,8 @@ namespace UDPLibrary
             Add(menuBack);
             //set the background texture
             currentMenuTextureIndex = MenuData.TextureIndexAudioMenu;
+
+            EventDispatcher.Publish(new EventData("menu event", this, EventType.OnClick, EventCategoryType.MainMenu));
         }
 
         private void ShowExitMenuScreen()
@@ -355,6 +363,8 @@ namespace UDPLibrary
             Add(menuExitNo);
             //set the background texture
             currentMenuTextureIndex = MenuData.TextureIndexExitMenu;
+
+            EventDispatcher.Publish(new EventData("menu event", this, EventType.OnClick, EventCategoryType.MainMenu));
         }
 
         #endregion
