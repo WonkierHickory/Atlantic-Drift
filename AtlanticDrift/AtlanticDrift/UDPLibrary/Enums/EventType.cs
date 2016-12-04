@@ -92,6 +92,6 @@ namespace UDPLibrary
         OnTextRender,
 
         //all other events...
-
+        OnPuzzle
     }
 }

@@ -30,6 +30,7 @@ namespace AtlanticDrift
         private PhysicsManager physicsManager;
         private UIManager uiManager;
         private MenuManager menuManager;
+        private PuzzleManager puzzleManager;
 
         //private GenericDictionary<string, Video> videoDictionary;
         private GenericDictionary<string, IVertexData> vertexDictionary;
@@ -995,6 +996,7 @@ namespace AtlanticDrift
             
             demoSoundManager(emitter);
             demoCameraLayout();
+            demoPuzzle();
 
             this.soundManager.Update(gameTime);
             
@@ -1016,6 +1018,20 @@ namespace AtlanticDrift
         #endregion
 
         #region demo
+
+        private void demoPuzzle()
+        {
+            if (this.keyboardManager.IsFirstKeyPress(KeyData.KeyPuzzle))
+            {
+                Texture2D[] puzzleTexturesArray = {
+                                                this.textureDictionary["mainmenu"]
+                                            };
+
+                this.puzzleManager = new PuzzleManager(this, puzzleTexturesArray, this.fontDictionary["menu"], PuzzleData.PuzzleTexturePadding, PuzzleData.PuzzleTextureColor);
+                this.puzzleManager.DrawOrder = 4; //always draw after ui manager(2)
+                Components.Add(this.puzzleManager);
+            }
+        }
 
         private void demoSoundManager(AudioEmitter emitter)
         {

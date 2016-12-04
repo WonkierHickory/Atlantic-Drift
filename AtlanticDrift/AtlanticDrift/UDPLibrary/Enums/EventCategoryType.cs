@@ -14,6 +14,7 @@ namespace UDPLibrary
         Player,
         NonPlayer,
         Pickup,
+        Puzzle,
 
         //all other categories of sender...
     }

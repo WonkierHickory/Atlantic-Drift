@@ -21,6 +21,7 @@ namespace UDPLibrary
         public delegate void PlayerEventHandler(EventData eventData);
         public delegate void NonPlayerEventHandler(EventData eventData);
         public delegate void PickupEventHandler(EventData eventData);
+        public delegate void PuzzleEventHandler(EventData eventData);
 
         //normally at least one event for each category type
         public event MainMenuEventHandler MainMenuChanged;
@@ -33,6 +34,7 @@ namespace UDPLibrary
         public event PlayerEventHandler PlayerChanged;
         public event NonPlayerEventHandler NonPlayerChanged;
         public event PickupEventHandler PickupChanged;
+        public event PuzzleEventHandler PuzzleChanged;
 
         public EventDispatcher(Main game, int initialSize)
             : base(game)
@@ -109,6 +111,9 @@ namespace UDPLibrary
                     break;
 
                 //add a case to handle the On...() method for each type
+                case EventCategoryType.Puzzle:
+                    OnPuzzle(eventData);
+                    break;
 
                 default:
                     break;
@@ -184,6 +189,13 @@ namespace UDPLibrary
             //non-null if an object has subscribed to this event
             if (TextRenderChanged != null)
                 TextRenderChanged(eventData);
+        }
+
+        protected virtual void OnPuzzle(EventData eventData)
+        {
+            //non-null if an object has subscribed to this event
+            if (PuzzleChanged != null)
+                PuzzleChanged(eventData);
         }
     }
 }

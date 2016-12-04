@@ -35,6 +35,8 @@ namespace UDPLibrary
 
         public static Keys KeyPauseShowMenu = Keys.Escape;
 
+        public static Keys KeyPuzzle = Keys.P;
+
         #endregion
 
 

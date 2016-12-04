@@ -8,7 +8,7 @@ namespace UDPLibrary
     {
         #region Main Menu Strings
         //all the strings shown to the user through the menu
-        public static String Game_Title = "Space Invaders";
+        public static String Game_Title = "Atlantic Drift";
         public static String Menu_Play = "Play";
         public static string StringMenuRestart = "Restart";
         public static String StringMenuSave = "Save";

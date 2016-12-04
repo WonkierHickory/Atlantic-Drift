@@ -79,6 +79,7 @@
   <ItemGroup>
     <Compile Include="App\Data\GameData.cs" />
     <Compile Include="App\Data\KeyData.cs" />
+    <Compile Include="App\Data\PuzzleData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="App\Main.cs" />

@@ -22,9 +22,11 @@ namespace UDPLibrary
         private PuzzleItem l2, m2, r2;
         private PuzzleItem l3, m3, r3;
 
+        private PuzzleItem exit;
+
 
         protected int currentPuzzleTextureIndex = 0; //0 = main, 1 = volume
-        private bool bPaused;
+        private bool puzzleStart;
         #endregion
 
         #region Properties
@@ -39,15 +41,15 @@ namespace UDPLibrary
                 puzzleTextureBlendColor = value;
             }
         }
-        public bool Pause
+        public bool Puzzle
         {
             get
             {
-                return bPaused;
+                return puzzleStart;
             }
             set
             {
-                bPaused = value;
+                puzzleStart = value;
             }
         }
         #endregion
@@ -109,10 +111,10 @@ namespace UDPLibrary
 
         public override void Update(GameTime gameTime)
         {
-            TestIfPaused();
+            TestIfPuzzleCommenced();
 
             //menu is not paused so show and process
-            if (!bPaused)
+            if (!puzzleStart)
                 ProcessPuzzleItemList();
 
 
@@ -121,7 +123,7 @@ namespace UDPLibrary
 
         public override void Draw(GameTime gameTime)
         {
-            if (!bPaused)
+            if (puzzleStart)
             {
                 //enable alpha blending on the menu objects
                 this.game.SpriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, DepthStencilState.Default, null);
@@ -140,11 +142,11 @@ namespace UDPLibrary
             base.Draw(gameTime);
         }
 
-        private void TestIfPaused()
+        private void TestIfPuzzleCommenced()
         {
             //if menu is pause and we press the show menu button then show the menu
-            if ((bPaused) && this.game.KeyboardManager.IsFirstKeyPress(
-                KeyData.KeyPauseShowMenu))
+            if ((puzzleStart) && this.game.KeyboardManager.IsFirstKeyPress(
+                KeyData.KeyPuzzle))
             {
                 ShowPuzzle();
             }
@@ -153,9 +155,9 @@ namespace UDPLibrary
         private void ShowPuzzle()
         {
             //show the menu by setting pause to false
-            bPaused = false;
+            puzzleStart = false;
             //generate an event to tell the object manager to pause
-            EventDispatcher.Publish(new EventData("puzzle event", this, EventType.OnPause, EventCategoryType.MainMenu));
+            EventDispatcher.Publish(new EventData("puzzle event", this, EventType.OnPuzzle, EventCategoryType.Puzzle));
 
             //if the mouse is invisible then show it
             if (!this.game.IsMouseVisible)
@@ -165,9 +167,9 @@ namespace UDPLibrary
         private void HidePuzzle()
         {
             //hide the menu by setting pause to true
-            bPaused = true;
+            puzzleStart = true;
             //generate an event to tell the object manager to unpause
-            EventDispatcher.Publish(new EventData("puzzle event", this, EventType.OnPlay, EventCategoryType.MainMenu));
+            EventDispatcher.Publish(new EventData("puzzle event", this, EventType.OnPuzzle, EventCategoryType.Puzzle));
 
             //if the mouse is invisible then show it
             if (this.game.IsMouseVisible)
@@ -179,7 +181,7 @@ namespace UDPLibrary
         private void ExitPuzzle()
         {
             //generate an event to tell the main method to exit - need to add code in main to catch this event
-            EventDispatcher.Publish(new EventData("puzzle event", this, EventType.OnExit, EventCategoryType.MainMenu));
+            EventDispatcher.Publish(new EventData("puzzle event", this, EventType.OnExit, EventCategoryType.Puzzle));
         }
 
         //iterate through each menu item and see if it is "highlighted" or "highlighted and clicked upon"
@@ -215,27 +217,29 @@ namespace UDPLibrary
         private void InitialisePuzzleOptions()
         {
             //add the menu items to the list
-            this.l1 = new PuzzleItem(MenuData.Menu_Play, MenuData.Menu_Play,
-                MenuData.BoundsMenuPlay, MenuData.ColorMenuInactive, MenuData.ColorMenuActive);
-            this.l2 = new PuzzleItem(MenuData.StringMenuRestart, MenuData.StringMenuRestart,
-                MenuData.BoundsMenuRestart, MenuData.ColorMenuInactive, MenuData.ColorMenuActive);
-            this.l3 = new PuzzleItem(MenuData.StringMenuAudio, MenuData.StringMenuAudio,
-               MenuData.BoundsMenuAudio, MenuData.ColorMenuInactive, MenuData.ColorMenuActive);
+            this.l1 = new PuzzleItem(PuzzleData.l1, PuzzleData.l1,
+                PuzzleData.BoundsL1, PuzzleData.ColorPuzzleInactive, PuzzleData.ColorPuzzleActive);
+            this.l2 = new PuzzleItem(PuzzleData.l2, PuzzleData.l2,
+                PuzzleData.BoundsL2, PuzzleData.ColorPuzzleInactive, PuzzleData.ColorPuzzleActive);
+            this.l3 = new PuzzleItem(PuzzleData.l3, PuzzleData.l3,
+                PuzzleData.BoundsL3, PuzzleData.ColorPuzzleInactive, PuzzleData.ColorPuzzleActive);
 
-            this.m1 = new PuzzleItem(MenuData.Menu_Play, MenuData.Menu_Play,
-                MenuData.BoundsMenuPlay, MenuData.ColorMenuInactive, MenuData.ColorMenuActive);
-            this.m2 = new PuzzleItem(MenuData.StringMenuRestart, MenuData.StringMenuRestart,
-                MenuData.BoundsMenuRestart, MenuData.ColorMenuInactive, MenuData.ColorMenuActive);
-            this.m3 = new PuzzleItem(MenuData.StringMenuAudio, MenuData.StringMenuAudio,
-               MenuData.BoundsMenuAudio, MenuData.ColorMenuInactive, MenuData.ColorMenuActive);
+            this.m1 = new PuzzleItem(PuzzleData.m1, PuzzleData.m1,
+                PuzzleData.BoundsM1, PuzzleData.ColorPuzzleInactive, PuzzleData.ColorPuzzleActive);
+            this.m2 = new PuzzleItem(PuzzleData.m2, PuzzleData.m2,
+                PuzzleData.BoundsM2, PuzzleData.ColorPuzzleInactive, PuzzleData.ColorPuzzleActive);
+            this.m3 = new PuzzleItem(PuzzleData.m3, PuzzleData.m3,
+                PuzzleData.BoundsM3, PuzzleData.ColorPuzzleInactive, PuzzleData.ColorPuzzleActive);
 
-            this.r1 = new PuzzleItem(MenuData.Menu_Play, MenuData.Menu_Play,
-                MenuData.BoundsMenuPlay, MenuData.ColorMenuInactive, MenuData.ColorMenuActive);
-            this.r2 = new PuzzleItem(MenuData.StringMenuRestart, MenuData.StringMenuRestart,
-                MenuData.BoundsMenuRestart, MenuData.ColorMenuInactive, MenuData.ColorMenuActive);
-            this.r3 = new PuzzleItem(MenuData.StringMenuAudio, MenuData.StringMenuAudio,
-               MenuData.BoundsMenuAudio, MenuData.ColorMenuInactive, MenuData.ColorMenuActive);
+            this.r1 = new PuzzleItem(PuzzleData.r1, PuzzleData.r1,
+                PuzzleData.BoundsR1, PuzzleData.ColorPuzzleInactive, PuzzleData.ColorPuzzleActive);
+            this.r2 = new PuzzleItem(PuzzleData.r2, PuzzleData.r2,
+                PuzzleData.BoundsR2, PuzzleData.ColorPuzzleInactive, PuzzleData.ColorPuzzleActive);
+            this.r3 = new PuzzleItem(PuzzleData.r3, PuzzleData.r3,
+                PuzzleData.BoundsR3, PuzzleData.ColorPuzzleInactive, PuzzleData.ColorPuzzleActive);
 
+            this.exit = new PuzzleItem(PuzzleData.end, PuzzleData.end,
+                PuzzleData.BoundsMenuExit, PuzzleData.ColorPuzzleInactive, PuzzleData.ColorPuzzleActive);
 
             //add your new menu options here...
         }
@@ -272,6 +276,8 @@ namespace UDPLibrary
             Add(r1);
             Add(r2);
             Add(r3);
+
+            Add(exit);
 
             //set the background texture
             currentPuzzleTextureIndex = MenuData.TextureIndexMainMenu;
