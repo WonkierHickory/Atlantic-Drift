@@ -194,6 +194,12 @@ namespace AtlanticDrift
 
             this.modelDictionary.Add("treeLeaf", Content.Load<Model>("Assets/Models/leaf"));
 
+            this.modelDictionary.Add("tree3", Content.Load<Model>("Assets/Models/three3"));
+
+            this.modelDictionary.Add("tree2", Content.Load<Model>("Assets/Models/tree2"));
+
+            this.modelDictionary.Add("tree5", Content.Load<Model>("Assets/Models/tree5"));
+
             this.modelDictionary.Add("puzzleChest", Content.Load<Model>("Assets/Models/chest"));
 
             this.modelDictionary.Add("radio", Content.Load<Model>("Assets/Models/Radio"));
@@ -201,6 +207,24 @@ namespace AtlanticDrift
             this.modelDictionary.Add("volcano", Content.Load<Model>("Assets/Models/Volcano"));
 
             this.modelDictionary.Add("rock", Content.Load<Model>("Assets/Models/Rocks"));
+
+            this.modelDictionary.Add("fireplace", Content.Load<Model>("Assets/Models/fireplace"));
+
+            this.modelDictionary.Add("creat", Content.Load<Model>("Assets/Models/notABoxAchest"));
+
+            this.modelDictionary.Add("rockPool", Content.Load<Model>("Assets/Models/PoolsOfRocks"));
+
+            this.modelDictionary.Add("bigRock", Content.Load<Model>("Assets/Models/BigRock"));
+
+            this.modelDictionary.Add("banana", Content.Load<Model>("Assets/Models/Banana"));
+
+            this.modelDictionary.Add("plant", Content.Load<Model>("Assets/Models/plant"));
+
+
+
+            this.modelDictionary.Add("puzzleOne", Content.Load<Model>("Assets/Models/PuzzleChestBottom"));
+
+            this.modelDictionary.Add("puzzleTwo", Content.Load<Model>("Assets/Models/PuzzleChestTop"));
 
         }
 
@@ -218,11 +242,33 @@ namespace AtlanticDrift
             this.textureDictionary.Add("islandTex",
                 Content.Load<Texture2D>("Assets/Textures/island/islandTex"));
 
-            this.textureDictionary.Add("chestTex",
+            this.textureDictionary.Add("noTex",
                 Content.Load<Texture2D>("Assets/Textures/Models/chestTex"));
 
             this.textureDictionary.Add("rockTex",
                 Content.Load<Texture2D>("Assets/Textures/Models/rockTex"));
+
+            this.textureDictionary.Add("wallTex",
+                Content.Load<Texture2D>("Assets/Textures/island/WallTexure"));
+
+            this.textureDictionary.Add("chestTex",
+                Content.Load<Texture2D>("Assets/Textures/island/textureChest"));
+
+            this.textureDictionary.Add("chestTop",
+                Content.Load<Texture2D>("Assets/Textures/Models/ChestTop"));
+
+            this.textureDictionary.Add("chestBot",
+                Content.Load<Texture2D>("Assets/Textures/Models/ChestTex"));
+
+            this.textureDictionary.Add("Tree",
+                Content.Load<Texture2D>("Assets/Textures/Models/Tree"));
+
+            this.textureDictionary.Add("Leaf",
+                Content.Load<Texture2D>("Assets/Textures/Models/leaf"));
+
+            this.textureDictionary.Add("fire",
+                Content.Load<Texture2D>("Assets/Textures/Models/fire"));
+
 
             #region Sky
             this.textureDictionary.Add("skybox_back",
@@ -260,10 +306,10 @@ namespace AtlanticDrift
             this.textureDictionary.Add("slj",
                 Content.Load<Texture2D>("Assets/Debug/Textures/slj"));
 
-            this.textureDictionary.Add("white", 
+            this.textureDictionary.Add("white",
                 Content.Load<Texture2D>("Assets/Textures/UI/white"));
 
-            this.textureDictionary.Add("mouseicons", 
+            this.textureDictionary.Add("mouseicons",
                 Content.Load<Texture2D>("Assets/Textures/UI/mouseicons"));
 
 
@@ -705,9 +751,20 @@ namespace AtlanticDrift
         {
             #region Vars
 
-            CollidableObject chest = null;
+            //CollidableObject chest = null;
+            CollidableObject plant = null;
+            CollidableObject banana = null;
+            CollidableObject fireplace = null;
+            CollidableObject puzzleOne = null;
+            CollidableObject puzzleTwo = null;
+            CollidableObject creat = null;
+            CollidableObject rockPool = null;
+            CollidableObject bigRock = null;
             CollidableObject tree = null;
             CollidableObject treeLeaf = null;
+            CollidableObject tree2 = null;
+            CollidableObject tree3 = null;
+            CollidableObject tree5 = null;
             CollidableObject rock = null;
             CollidableObject radio = null;
             CollidableObject foliage = null;
@@ -718,56 +775,90 @@ namespace AtlanticDrift
 
             #region Chests
 
-            Model puzzleModel = this.modelDictionary["puzzleChest"];
+            //Model puzzleModel = this.modelDictionary["puzzleChest"];
+            //texture = this.textureDictionary["chestTex"];
+            //transform3D = new Transform3D(new Vector3(-150, 30, -1000), new Vector3(0, 45, 0),
+            //    new Vector3(0.25f, 0.25f, 0.25f), Vector3.UnitX, Vector3.UnitY);
+
+            //chest = new TriangleMeshObject("treasureChest3", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            //chest.Enable(true, 1); //change to false, see what happens.
+            //chest.ObjectType = ObjectType.CollidableProp;
+            //this.objectManager.Add(chest);
+
+
+            Model puzzleModel = this.modelDictionary["creat"];
             texture = this.textureDictionary["chestTex"];
             transform3D = new Transform3D(new Vector3(-150, 30, -1000), new Vector3(0, 45, 0),
-                new Vector3(0.25f, 0.25f, 0.25f), Vector3.UnitX, Vector3.UnitY);
+                new Vector3(0.10f, 0.10f, 0.10f), Vector3.UnitX, Vector3.UnitY);
 
-            chest = new TriangleMeshObject("treasureChest3", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            chest.Enable(true, 1); //change to false, see what happens.
-            chest.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(chest);
+            creat = new TriangleMeshObject("treasureChest3", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            creat.Enable(true, 1); //change to false, see what happens.
+            creat.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(creat);
 
-          
             transform3D = new Transform3D(new Vector3(-100, 30, -920), new Vector3(0, 0, 0),
-                new Vector3(0.25f, 0.25f, 0.25f), Vector3.UnitX, Vector3.UnitY);
+                new Vector3(0.25f, 0.10f, 0.10f), Vector3.UnitX, Vector3.UnitY);
 
-            chest = new TriangleMeshObject("treasureChest1", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            chest.Enable(true, 1); //change to false, see what happens.
-            chest.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(chest);
+            creat = new TriangleMeshObject("treasureChest1", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            creat.Enable(true, 1); //change to false, see what happens.
+            creat.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(creat);
 
             transform3D = new Transform3D(new Vector3(-200, 30, -1111), new Vector3(0, 20, 0),
-                new Vector3(0.25f, 0.25f, 0.25f), Vector3.UnitX, Vector3.UnitY);
+                new Vector3(0.15f, 0.15f, 0.15f), Vector3.UnitX, Vector3.UnitY);
 
-            chest = new TriangleMeshObject("treasureChest2", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            chest.Enable(true, 1); //change to false, see what happens.
-            chest.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(chest);
+            creat = new TriangleMeshObject("treasureChest2", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            creat.Enable(true, 1); //change to false, see what happens.
+            creat.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(creat);
 
             transform3D = new Transform3D(new Vector3(-220, 30, -900), new Vector3(0, 20, 0),
-                new Vector3(0.25f, 0.25f, 0.25f), Vector3.UnitX, Vector3.UnitY);
+                new Vector3(0.10f, 0.15f, 0.10f), Vector3.UnitX, Vector3.UnitY);
 
-            chest = new TriangleMeshObject("treasureChestKey", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            chest.Enable(true, 1); //change to false, see what happens.
-            chest.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(chest);
+            creat = new TriangleMeshObject("treasureChestKey", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            creat.Enable(true, 1); //change to false, see what happens.
+            creat.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(creat);
 
             transform3D = new Transform3D(new Vector3(-100, 30, -1000), new Vector3(0, 60, 0),
-                new Vector3(0.25f, 0.25f, 0.25f), Vector3.UnitX, Vector3.UnitY);
+                new Vector3(0.10f, 0.10f, 0.15f), Vector3.UnitX, Vector3.UnitY);
 
-            chest = new TriangleMeshObject("treasureChest4", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            chest.Enable(true, 1); //change to false, see what happens.
-            chest.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(chest);
+            creat = new TriangleMeshObject("treasureChest4", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            creat.Enable(true, 1); //change to false, see what happens.
+            creat.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(creat);
 
             transform3D = new Transform3D(new Vector3(-200, 30, -1000), new Vector3(0, 60, 0),
-                new Vector3(0.25f, 0.25f, 0.25f), Vector3.UnitX, Vector3.UnitY);
+                new Vector3(0.15f, 0.10f, 0.15f), Vector3.UnitX, Vector3.UnitY);
 
-            chest = new TriangleMeshObject("treasureChest5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            chest.Enable(true, 1); //change to false, see what happens.
-            chest.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(chest);
+            creat = new TriangleMeshObject("treasureChest5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            creat.Enable(true, 1); //change to false, see what happens.
+            creat.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(creat);
+
+            #endregion
+
+            #region Puzzle
+
+            Model OneModel = this.modelDictionary["puzzleOne"];
+            texture = this.textureDictionary["chestBot"];
+            transform3D = new Transform3D(new Vector3(-153, 31, -950), new Vector3(0, 0, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            puzzleOne = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, OneModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            puzzleOne.Enable(true, 1); //change to false, see what happens.
+            puzzleOne.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(puzzleOne);
+
+            Model TwoModel = this.modelDictionary["puzzleTwo"];
+            texture = this.textureDictionary["chestTop"];
+            transform3D = new Transform3D(new Vector3(-153, 31, -950), new Vector3(0, 0, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            puzzleTwo = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, TwoModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            puzzleTwo.Enable(true, 1); //change to false, see what happens.
+            puzzleTwo.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(puzzleTwo);
 
             #endregion
 
@@ -782,6 +873,167 @@ namespace AtlanticDrift
             rock.Enable(true, 1); //change to false, see what happens.
             rock.ObjectType = ObjectType.CollidableProp;
             this.objectManager.Add(rock);
+
+
+            transform3D = new Transform3D(new Vector3(-353, 30, -21), new Vector3(0, 0, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            rock = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, rockModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            rock.Enable(true, 1); //change to false, see what happens.
+            rock.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(rock);
+
+            transform3D = new Transform3D(new Vector3(-692, 30, 212), new Vector3(0, 0, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            rock = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, rockModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            rock.Enable(true, 1); //change to false, see what happens.
+            rock.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(rock);
+
+            transform3D = new Transform3D(new Vector3(-404, 30, 530), new Vector3(0, 0, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            rock = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, rockModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            rock.Enable(true, 1); //change to false, see what happens.
+            rock.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(rock);
+
+            transform3D = new Transform3D(new Vector3(31, 30, 663), new Vector3(0, 0, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            rock = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, rockModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            rock.Enable(true, 1); //change to false, see what happens.
+            rock.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(rock);
+
+            transform3D = new Transform3D(new Vector3(-494, 30, -1551), new Vector3(0, 0, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            rock = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, rockModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            rock.Enable(true, 1); //change to false, see what happens.
+            rock.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(rock);
+
+
+
+            #region Rock Pools
+            Model rockPoolModel = this.modelDictionary["rockPool"];
+            texture = this.textureDictionary["rockTex"];
+            transform3D = new Transform3D(new Vector3(173, 15, -1725), new Vector3(0, 0, 0),
+                new Vector3(0.1f, 0.1f, 0.1f), Vector3.UnitX, Vector3.UnitY);
+
+            rockPool = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, rockPoolModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            rockPool.Enable(true, 1); //change to false, see what happens.
+            rockPool.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(rockPool);
+
+            texture = this.textureDictionary["rockTex"];
+            transform3D = new Transform3D(new Vector3(125, 15, -1680), new Vector3(0, 0, 0),
+                new Vector3(0.1f, 0.1f, 0.1f), Vector3.UnitX, Vector3.UnitY);
+
+            rockPool = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, rockPoolModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            rockPool.Enable(true, 1); //change to false, see what happens.
+            rockPool.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(rockPool);
+
+            texture = this.textureDictionary["rockTex"];
+            transform3D = new Transform3D(new Vector3(192, 15, -1643), new Vector3(0, 0, 0),
+                new Vector3(0.1f, 0.1f, 0.1f), Vector3.UnitX, Vector3.UnitY);
+
+            rockPool = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, rockPoolModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            rockPool.Enable(true, 1); //change to false, see what happens.
+            rockPool.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(rockPool);
+
+            texture = this.textureDictionary["rockTex"];
+            transform3D = new Transform3D(new Vector3(257, 15, -1643), new Vector3(0, 0, 0),
+                new Vector3(0.1f, 0.1f, 0.1f), Vector3.UnitX, Vector3.UnitY);
+
+            rockPool = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, rockPoolModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            rockPool.Enable(true, 1); //change to false, see what happens.
+            rockPool.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(rockPool);
+
+            texture = this.textureDictionary["rockTex"];
+            transform3D = new Transform3D(new Vector3(311, 15, -1675), new Vector3(0, 0, 0),
+                new Vector3(0.1f, 0.1f, 0.1f), Vector3.UnitX, Vector3.UnitY);
+
+            rockPool = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, rockPoolModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            rockPool.Enable(true, 1); //change to false, see what happens.
+            rockPool.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(rockPool);
+
+
+            texture = this.textureDictionary["rockTex"];
+            transform3D = new Transform3D(new Vector3(614, 30, 1396), new Vector3(0, 0, 0),
+                new Vector3(0.1f, 0.1f, 0.1f), Vector3.UnitX, Vector3.UnitY);
+
+            rockPool = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, rockPoolModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            rockPool.Enable(true, 1); //change to false, see what happens.
+            rockPool.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(rockPool);
+
+
+
+
+
+            #endregion
+
+            #region Big Rocks
+
+            Model bigRockModel = this.modelDictionary["bigRock"];
+            texture = this.textureDictionary["rockTex"];
+            transform3D = new Transform3D(new Vector3(-623, 0, -1758), new Vector3(0, 0, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            bigRock = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, bigRockModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            bigRock.Enable(true, 1); //change to false, see what happens.
+            bigRock.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(bigRock);
+
+            texture = this.textureDictionary["rockTex"];
+            transform3D = new Transform3D(new Vector3(614, 0, 1396), new Vector3(0, 0, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            bigRock = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, bigRockModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            bigRock.Enable(true, 1); //change to false, see what happens.
+            bigRock.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(bigRock);
+
+            texture = this.textureDictionary["rockTex"];
+            transform3D = new Transform3D(new Vector3(1238, 0, -572), new Vector3(0, 0, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            bigRock = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, bigRockModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            bigRock.Enable(true, 1); //change to false, see what happens.
+            bigRock.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(bigRock);
+
+            texture = this.textureDictionary["rockTex"];
+            transform3D = new Transform3D(new Vector3(623, 0, 290), new Vector3(0, 0, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            bigRock = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, bigRockModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            bigRock.Enable(true, 1); //change to false, see what happens.
+            bigRock.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(bigRock);
+
+            #endregion
+
+            #endregion
+
+            #region fireplace
+
+            Model fireModel = this.modelDictionary["fireplace"];
+            texture = this.textureDictionary["fire"];
+            transform3D = new Transform3D(new Vector3(-146, 35, -1055), new Vector3(90, 0, -340),
+                new Vector3(3, 3, 3), Vector3.UnitX, Vector3.UnitY);
+
+            fireplace = new TriangleMeshObject("fireplace", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, fireModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            fireplace.Enable(true, 1); //change to false, see what happens.
+            fireplace.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(fireplace);
 
             #endregion
 
@@ -801,9 +1053,127 @@ namespace AtlanticDrift
 
             #region Foliage
 
+            #region Banana
+
+            Model BananaModel = this.modelDictionary["banana"];
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(-717, 20, -587), new Vector3(0, 45, 0),
+                new Vector3(0.08f, 0.08f, 0.08f), Vector3.UnitX, Vector3.UnitY);
+
+            banana = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, BananaModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            banana.Enable(false, 1); //change to false, see what happens.
+            banana.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(banana);
+
+            transform3D = new Transform3D(new Vector3(-656, 30, -564), new Vector3(0, 45, 0),
+                new Vector3(0.08f, 0.08f, 0.08f), Vector3.UnitX, Vector3.UnitY);
+
+            banana = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, BananaModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            banana.Enable(false, 1); //change to false, see what happens.
+            banana.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(banana);
+
+            transform3D = new Transform3D(new Vector3(-573, 30, -541), new Vector3(0, 45, 0),
+                new Vector3(0.08f, 0.08f, 0.08f), Vector3.UnitX, Vector3.UnitY);
+
+            banana = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, BananaModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            banana.Enable(false, 1); //change to false, see what happens.
+            banana.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(banana);
+
+            transform3D = new Transform3D(new Vector3(-442, 30, -494), new Vector3(0, 45, 0),
+                new Vector3(0.08f, 0.08f, 0.08f), Vector3.UnitX, Vector3.UnitY);
+
+            banana = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, BananaModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            banana.Enable(false, 1); //change to false, see what happens.
+            banana.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(banana);
+
+            transform3D = new Transform3D(new Vector3(-237, 30, -400), new Vector3(0, 45, 0),
+                new Vector3(0.08f, 0.08f, 0.08f), Vector3.UnitX, Vector3.UnitY);
+
+            banana = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, BananaModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            banana.Enable(false, 1); //change to false, see what happens.
+            banana.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(banana);
+
+            transform3D = new Transform3D(new Vector3(-130, 30, -329), new Vector3(0, 45, 0),
+                new Vector3(0.08f, 0.08f, 0.08f), Vector3.UnitX, Vector3.UnitY);
+
+            banana = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, BananaModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            banana.Enable(false, 1); //change to false, see what happens.
+            banana.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(banana);
+
+            transform3D = new Transform3D(new Vector3(-27, 30, -259), new Vector3(0, 45, 0),
+                new Vector3(0.08f, 0.08f, 0.08f), Vector3.UnitX, Vector3.UnitY);
+
+            banana = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, BananaModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            banana.Enable(false, 1); //change to false, see what happens.
+            banana.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(banana);
+
+            transform3D = new Transform3D(new Vector3(94, 30, -157), new Vector3(0, 45, 0),
+                new Vector3(0.08f, 0.08f, 0.08f), Vector3.UnitX, Vector3.UnitY);
+
+            banana = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, BananaModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            banana.Enable(false, 1); //change to false, see what happens.
+            banana.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(banana);
+
+            transform3D = new Transform3D(new Vector3(247, 30, -11), new Vector3(0, 45, 0),
+                new Vector3(0.08f, 0.08f, 0.08f), Vector3.UnitX, Vector3.UnitY);
+
+            banana = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, BananaModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            banana.Enable(false, 1); //change to false, see what happens.
+            banana.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(banana);
+
+            transform3D = new Transform3D(new Vector3(317, 30, 82), new Vector3(0, 45, 0),
+                new Vector3(0.08f, 0.08f, 0.08f), Vector3.UnitX, Vector3.UnitY);
+
+            banana = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, BananaModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            banana.Enable(false, 1); //change to false, see what happens.
+            banana.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(banana);
+
+            transform3D = new Transform3D(new Vector3(391, 30, 181), new Vector3(0, 45, 0),
+                new Vector3(0.08f, 0.08f, 0.08f), Vector3.UnitX, Vector3.UnitY);
+
+            banana = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, BananaModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            banana.Enable(false, 1); //change to false, see what happens.
+            banana.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(banana);
+
+            transform3D = new Transform3D(new Vector3(442, 30, 272), new Vector3(0, 45, 0),
+                new Vector3(0.08f, 0.08f, 0.08f), Vector3.UnitX, Vector3.UnitY);
+
+            banana = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, BananaModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            banana.Enable(false, 1); //change to false, see what happens.
+            banana.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(banana);
+
+            transform3D = new Transform3D(new Vector3(477, 30, 353), new Vector3(0, 45, 0),
+                new Vector3(0.08f, 0.08f, 0.08f), Vector3.UnitX, Vector3.UnitY);
+
+            banana = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, BananaModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            banana.Enable(false, 1); //change to false, see what happens.
+            banana.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(banana);
+
+            transform3D = new Transform3D(new Vector3(552, 30, 440), new Vector3(0, 45, 0),
+                new Vector3(0.08f, 0.08f, 0.08f), Vector3.UnitX, Vector3.UnitY);
+
+            banana = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, BananaModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            banana.Enable(false, 1); //change to false, see what happens.
+            banana.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(banana);
+
+            #endregion
+
             #region Barrier
             Model foliageModel = this.modelDictionary["foliage"];
-            texture = this.textureDictionary["checkerboard"];
+            texture = this.textureDictionary["Leaf"];
             transform3D = new Transform3D(new Vector3(-737, 20, -413), new Vector3(0, 0, 0),
                 new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
@@ -902,19 +1272,497 @@ namespace AtlanticDrift
 
             #endregion
 
+            #region plant
+
+            Model plantModel = this.modelDictionary["plant"];
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(-463, 30, -1052), new Vector3(0, 45, 0),
+                new Vector3(0.1f, 0.1f, 0.1f), Vector3.UnitX, Vector3.UnitY);
+
+            plant = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, plantModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            plant.Enable(false, 1); //change to false, see what happens.
+            plant.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(plant);
+
+            transform3D = new Transform3D(new Vector3(-341, 30, -474), new Vector3(0, 45, 0),
+                new Vector3(0.1f, 0.1f, 0.1f), Vector3.UnitX, Vector3.UnitY);
+
+            plant = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, plantModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            plant.Enable(false, 1); //change to false, see what happens.
+            plant.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(plant);
+
+            transform3D = new Transform3D(new Vector3(220, 30, -412), new Vector3(0, 45, 0),
+                new Vector3(0.1f, 0.1f, 0.1f), Vector3.UnitX, Vector3.UnitY);
+
+            plant = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, plantModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            plant.Enable(false, 1); //change to false, see what happens.
+            plant.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(plant);
+
+            #endregion
+
+            #region Paddy Models
+
+
+            //First Tree
+            Model treeModelTwo = this.modelDictionary["tree"];
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(-487, 90, -1041), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelTwo, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree.Enable(true, 1); //change to false, see what happens.
+            tree.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree);
+
+            Model treeLeafModelTwo = this.modelDictionary["treeLeaf"];
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(-487, 90, -1041), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelTwo, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //Second Tree
+            Model treeModelThree = this.modelDictionary["tree"];
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(-771, 90, -658), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelThree, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree.Enable(true, 1); //change to false, see what happens.
+            tree.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree);
+
+            Model treeLeafModelThree = this.modelDictionary["treeLeaf"];
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(-771, 90, -685), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelThree, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //Four
+            Model treeModelFour = this.modelDictionary["tree2"];
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(-342, 120, -375), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree2", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelFour, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            Model treeLeafModelFour = this.modelDictionary["treeLeaf"];
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(-342, 120, -375), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelFour, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //Five
+            Model treeModelFive = this.modelDictionary["tree5"];
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(11, 120, -94), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree5 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelFive, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree5.Enable(true, 1); //change to false, see what happens.
+            tree5.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree5);
+
+            Model treeLeafModelFive = this.modelDictionary["treeLeaf"];
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(11, 120, -94), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelFive, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //SIx
+            Model treeModelSix = this.modelDictionary["tree3"];
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(173, 100, -444), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree3 = new TriangleMeshObject("tree3", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelSix, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree3.Enable(true, 1); //change to false, see what happens.
+            tree3.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree3);
+
+            Model treeLeafModelSix = this.modelDictionary["treeLeaf"];
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(173, 100, -444), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelSix, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+
+            //SEven
+            Model treeModelSeven = this.modelDictionary["tree3"];
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(308, 100, -1045), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree3 = new TriangleMeshObject("tree3", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelSeven, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree3.Enable(true, 1); //change to false, see what happens.
+            tree3.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree3);
+
+            Model treeLeafModelSeven = this.modelDictionary["treeLeaf"];
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(308, 100, -1045), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelSeven, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+
+            //Eight
+            Model treeModelEight = this.modelDictionary["tree5"];
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(614, 100, -761), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree3 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelEight, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree3.Enable(true, 1); //change to false, see what happens.
+            tree3.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree3);
+
+            Model treeLeafModelEight = this.modelDictionary["treeLeaf"];
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(614, 100, -761), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelEight, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+
+            //Nine 
+            Model treeModelNine = this.modelDictionary["tree2"];
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(694, 100, -276), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelNine, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            Model treeLeafModelNine = this.modelDictionary["treeLeaf"];
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(694, 100, -276), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelNine, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+
+            //Ten 
+            Model treeModelTen = this.modelDictionary["tree2"];
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(530, 100, 95), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            Model treeLeafModelTen = this.modelDictionary["treeLeaf"];
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(530, 100, 95), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+
+            //one
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(-691, 100, -212), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(-691, 100, -212), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //two
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(-991, 100, 60), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(-991, 100, 60), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //three
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(-884, 100, 291), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(-884, 100, 291), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //four
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(-664, 100, 354), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(-664, 100, 354), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //five
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(-418, 100, 246), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(-418, 100, 246), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //six
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(-156, 100, 226), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(-156, 100, 226), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //seven
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(107, 100, 517), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(107, 100, 517), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //eight
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(327, 100, 684), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(327, 100, 684), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //nine
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(207, 100, 354), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(207, 100, 354), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //ten
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(-131, 100, 513), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(-131, 100, 513), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //eleven
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(29, 100, 1059), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(29, 100, 1059), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //tweleve 
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(229, 100, 1256), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(229, 100, 1256), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+            //thirteen
+            texture = this.textureDictionary["Tree"];
+            transform3D = new Transform3D(new Vector3(98, 100, 1455), new Vector3(0, 75, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            tree2 = new TriangleMeshObject("tree5", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            tree2.Enable(true, 1); //change to false, see what happens.
+            tree2.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(tree2);
+
+            texture = this.textureDictionary["Leaf"];
+            transform3D = new Transform3D(new Vector3(98, 100, 1455), new Vector3(0, 180, 0),
+                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+
+            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModelTen, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            treeLeaf.Enable(true, 1); //change to false, see what happens.
+            treeLeaf.ObjectType = ObjectType.CollidableProp;
+            this.objectManager.Add(treeLeaf);
+
+
+
+            #endregion
+
             #region Trees
             Model treeModel = this.modelDictionary["tree"];
-            texture = this.textureDictionary["checkerboard"];
+            texture = this.textureDictionary["Tree"];
             transform3D = new Transform3D(new Vector3(-912, 90, -1611), new Vector3(0, 45, 0),
                 new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
             tree = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            tree.Enable(true, 1); //change to false, see what happens.
+            tree.Enable(false, 1); //change to false, see what happens.
             tree.ObjectType = ObjectType.CollidableProp;
             this.objectManager.Add(tree);
 
             Model treeLeafModel = this.modelDictionary["treeLeaf"];
-            texture = this.textureDictionary["checkerboard"];
+            texture = this.textureDictionary["Leaf"];
             transform3D = new Transform3D(new Vector3(-912, 90, -1611), new Vector3(0, 45, 0),
                 new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
@@ -925,6 +1773,9 @@ namespace AtlanticDrift
 
 
 
+
+
+            texture = this.textureDictionary["Tree"];
             transform3D = new Transform3D(new Vector3(-840, 90, -1750), new Vector3(0, 260, 0),
                 new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
@@ -933,6 +1784,7 @@ namespace AtlanticDrift
             tree.ObjectType = ObjectType.CollidableProp;
             this.objectManager.Add(tree);
 
+            texture = this.textureDictionary["Leaf"];
             transform3D = new Transform3D(new Vector3(-840, 90, -1750), new Vector3(0, 260, 0),
                 new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
@@ -943,21 +1795,21 @@ namespace AtlanticDrift
 
 
 
-            transform3D = new Transform3D(new Vector3(-840, 90, -1750), new Vector3(0, 260, 0),
-                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+            //transform3D = new Transform3D(new Vector3(-840, 90, -1750), new Vector3(0, 260, 0),
+            //    new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
-            tree = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            tree.Enable(true, 1); //change to false, see what happens.
-            tree.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(tree);
+            //tree = new TriangleMeshObject("tree", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            //tree.Enable(true, 1); //change to false, see what happens.
+            //tree.ObjectType = ObjectType.CollidableProp;
+            //this.objectManager.Add(tree);
 
-            transform3D = new Transform3D(new Vector3(-840, 90, -1750), new Vector3(0, 260, 0),
-                new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
+            //transform3D = new Transform3D(new Vector3(-840, 90, -1750), new Vector3(0, 260, 0),
+            //    new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
-            treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
-            treeLeaf.Enable(true, 1); //change to false, see what happens.
-            treeLeaf.ObjectType = ObjectType.CollidableProp;
-            this.objectManager.Add(treeLeaf);
+            //treeLeaf = new TriangleMeshObject("treeLeaf", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, treeLeafModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            //treeLeaf.Enable(true, 1); //change to false, see what happens.
+            //treeLeaf.ObjectType = ObjectType.CollidableProp;
+            //this.objectManager.Add(treeLeaf);
             #endregion
 
             #endregion

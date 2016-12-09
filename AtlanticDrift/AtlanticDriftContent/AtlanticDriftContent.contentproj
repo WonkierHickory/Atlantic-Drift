@@ -304,6 +304,164 @@
       <Processor>ModelProcessor</Processor>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Models\Banana.FBX">
+      <Name>Banana</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Models\BigRock.FBX">
+      <Name>BigRock</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Models\fireplace.fbx">
+      <Name>fireplace</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Models\leaf2.FBX">
+      <Name>leaf2</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Models\leaf5.FBX">
+      <Name>leaf5</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Models\notABoxAChest.FBX">
+      <Name>notABoxAChest</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Models\Part2.FBX">
+      <Name>Part2</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Models\plant.FBX">
+      <Name>plant</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Models\PoolsOfRocks.FBX">
+      <Name>PoolsOfRocks</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Models\PuzzleChestBot.FBX">
+      <Name>PuzzleChestBot</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Models\PuzzleChestBottom.FBX">
+      <Name>PuzzleChestBottom</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Models\PuzzleChestTop.FBX">
+      <Name>PuzzleChestTop</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Models\three3.FBX">
+      <Name>three3</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Models\tree2.FBX">
+      <Name>tree2</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Models\tree5.FBX">
+      <Name>tree5</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Models\Wall.FBX">
+      <Name>Wall</Name>
+      <Importer>FbxImporter</Importer>
+      <Processor>ModelProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Textures\Models\ChestTop.png">
+      <Name>ChestTop</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Textures\Models\fire.png">
+      <Name>fire</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Textures\Models\leaf.png">
+      <Name>leaf</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Textures\Models\textureChest.jpg">
+      <Name>textureChest</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Textures\Models\Tree.jpg">
+      <Name>Tree</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Textures\island\textureChest.jpg">
+      <Name>textureChest</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Textures\island\WallTest.png">
+      <Name>WallTest</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Textures\island\WallTexure.png">
+      <Name>WallTexure</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Audio\birds.wav">
+      <Name>birds</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Audio\footsteps-Grass.wav">
+      <Name>footsteps-Grass</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Audio\footsteps-Leaves.wav">
+      <Name>footsteps-Leaves</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Audio\footsteps-Sand.wav">
+      <Name>footsteps-Sand</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Audio\stream.wav">
+      <Name>stream</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+    <Compile Include="Assets\Audio\wind-Rustling.wav">
+      <Name>wind-Rustling</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+    </Compile>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!--  To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
