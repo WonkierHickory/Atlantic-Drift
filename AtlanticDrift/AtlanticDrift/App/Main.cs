@@ -360,7 +360,7 @@ namespace AtlanticDrift
             #endregion
 
             InitializeCameras();
-            //InitializeUI();
+            InitializeUI();
         }
 
         protected override void Initialize()
@@ -815,7 +815,7 @@ namespace AtlanticDrift
             transform3D = new Transform3D(new Vector3(-220, 30, -900), new Vector3(0, 20, 0),
                 new Vector3(0.10f, 0.15f, 0.10f), Vector3.UnitX, Vector3.UnitY);
 
-            creat = new TriangleMeshObject("treasureChestKey", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            creat = new TriangleMeshObject("treasureChest", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, puzzleModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
             creat.Enable(true, 1); //change to false, see what happens.
             creat.ObjectType = ObjectType.CollidableProp;
             this.objectManager.Add(creat);
@@ -845,7 +845,7 @@ namespace AtlanticDrift
             transform3D = new Transform3D(new Vector3(-153, 31, -950), new Vector3(0, 0, 0),
                 new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
-            puzzleOne = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, OneModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            puzzleOne = new TriangleMeshObject("treasureChestKey", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, OneModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
             puzzleOne.Enable(true, 1); //change to false, see what happens.
             puzzleOne.ObjectType = ObjectType.CollidableProp;
             this.objectManager.Add(puzzleOne);
@@ -855,7 +855,7 @@ namespace AtlanticDrift
             transform3D = new Transform3D(new Vector3(-153, 31, -950), new Vector3(0, 0, 0),
                 new Vector3(0.2f, 0.2f, 0.2f), Vector3.UnitX, Vector3.UnitY);
 
-            puzzleTwo = new TriangleMeshObject("rock", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, TwoModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
+            puzzleTwo = new TriangleMeshObject("treasureChestKey", ObjectType.CollidableProp, transform3D, this.texturedModelEffect, texture, TwoModel, Color.White, 1, new MaterialProperties(0.8f, 0.8f, 0.7f));
             puzzleTwo.Enable(true, 1); //change to false, see what happens.
             puzzleTwo.ObjectType = ObjectType.CollidableProp;
             this.objectManager.Add(puzzleTwo);

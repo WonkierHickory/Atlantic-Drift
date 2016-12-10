@@ -144,9 +144,19 @@ namespace UDPLibrary
 
         private void TestIfPuzzleCommenced()
         {
-            //if menu is pause and we press the show menu button then show the menu
-            if ((puzzleStart) && this.game.KeyboardManager.IsFirstKeyPress(
-                KeyData.KeyPuzzle))
+            //To test if puzzle is starting we check if the player has clicked on the puzzle chest
+
+
+            float distance = 0.003f;
+            Vector3 pos, normal;
+
+            Actor pickedActor = game.MouseManager.GetPickedObject(
+                game.CameraManager.ActiveCamera,
+                GameData.FirstPersonStartPickDistance /*5 == how far from 1st Person collidable to start testing for collisions - should always exceed capsule collision skin radius*/,
+                distance, out pos, out normal);
+
+            // check if we've clicked on the chest with the radio
+            if (pickedActor != null && game.MouseManager.IsLeftButtonClickedOnce() && pickedActor.ID == "treasureChestKey")
             {
                 ShowPuzzle();
             }
