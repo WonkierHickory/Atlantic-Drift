@@ -49,16 +49,33 @@ namespace UDPLibrary
         {
             if (game.CameraManager.ActiveCamera != null)
             {
+
+                float distance = 0.003f;
                 Vector3 pos, normal;
 
                 Actor pickedActor = game.MouseManager.GetPickedObject(
                     game.CameraManager.ActiveCamera,
                     GameData.FirstPersonStartPickDistance /*5 == how far from 1st Person collidable to start testing for collisions - should always exceed capsule collision skin radius*/,
-                    1000, out pos, out normal);
+                    distance, out pos, out normal);
 
                 //am i picking something collidable that isnt the ground?
                 if ((pickedActor != null) && (pickedActor.ObjectType != UDPLibrary.ObjectType.CollidableGround))
                 {
+                    //change the relicule colour
+                    this.Color = Color.Red;
+
+                    //If we just clicked
+                    if (game.MouseManager.IsLeftButtonClickedOnce() && pickedActor.ID == "treasureChestKey")
+                    {
+                        // ************* CODE MOVED TO "PuzzleManager" *********************
+
+
+                    }
+
+
+
+                    /* - NIAL'S PREVIOUS CODE
+
                     ModelObject nextPickedModelObject = pickedActor as ModelObject;
 
                     //make mouse icon change color on collision
@@ -87,6 +104,8 @@ namespace UDPLibrary
                     }
 
                     this.lastPickedModelObject = nextPickedModelObject;
+
+                    */
                 }
                 else
                 {
@@ -95,7 +114,10 @@ namespace UDPLibrary
                     this.SourceRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, 128, 128);
                     this.Transform2D.Rotation = 0;
                 }
+
+
             }
+
         }
     }
 }

@@ -226,6 +226,7 @@ namespace AtlanticDrift
 
             this.modelDictionary.Add("puzzleTwo", Content.Load<Model>("Assets/Models/PuzzleChestTop"));
 
+
         }
 
         private void LoadTextures()
@@ -562,9 +563,6 @@ namespace AtlanticDrift
             this.texturedModelEffect.TextureEnabled = true;
             this.texturedModelEffect.EnableDefaultLighting();
 
-            //used for billboards
-            //this.billboardEffect = Content.Load<Effect>("Assets/Effects/Billboard");
-
             //used for animated models
             //this.animatedModelEffect = Content.Load<Effect>("Assets/Effects/Animated");
 
@@ -616,7 +614,7 @@ namespace AtlanticDrift
             this.cameraManager.SetCameraLayout("FirstPersonFullScreen");
         }
         #endregion
-        
+         
         #region Initialize Drawn Objects
 
         #region Non-Collidable
@@ -629,28 +627,6 @@ namespace AtlanticDrift
         #endregion
 
         #region Collidable
-
-        private void InitializePlayerObjects()
-        {
-            //PlayerObject playerObject = null;
-            //Transform3D transform3D = null;
-
-            //transform3D = new Transform3D(new Vector3(60, 5, -50),
-            //    Vector3.Zero, new Vector3(1.5f, 1.5f, 5), //scale?
-            //    Vector3.UnitZ, Vector3.UnitY);
-
-            //playerObject = new PlayerObject("p1",
-            //    ObjectType.Player, transform3D,
-            //    this.texturedModelEffect,
-            //    this.textureDictionary["slj"],
-            //    this.modelDictionary["cube"],
-            //    Color.White,
-            //    1,
-            //    KeyData.MoveKeysOther, 1, 5, 1.2f, 1, Vector3.Zero);
-            //playerObject.Enable(false, 1);
-
-            //this.objectManager.Add(playerObject);
-        }
 
         private void InitializeStaticCollidableGround(int scale)
         {
