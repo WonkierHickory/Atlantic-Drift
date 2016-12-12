@@ -490,6 +490,7 @@ namespace AtlanticDrift
         {
             this.graphics.PreferredBackBufferWidth = width;
             this.graphics.PreferredBackBufferHeight = height;
+            //this.graphics.IsFullScreen = true;
             this.screenCentre = new Vector2(width / 2, height / 2);
             this.screenRectangle = new Microsoft.Xna.Framework.Rectangle(0, 0, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
             this.graphics.ApplyChanges();
@@ -1837,7 +1838,10 @@ namespace AtlanticDrift
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             this.graphics.GraphicsDevice.Viewport = this.cameraManager.ActiveCamera.Viewport;
+
+            
             base.Draw(gameTime);
+
 
             if (this.menuManager.Pause)
                 drawDebugInfo();
