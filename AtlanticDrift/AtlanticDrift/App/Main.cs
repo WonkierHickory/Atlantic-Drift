@@ -241,7 +241,7 @@ namespace AtlanticDrift
                 Content.Load<Texture2D>("Assets/Textures/island/water"));
 
             this.textureDictionary.Add("islandTex",
-                Content.Load<Texture2D>("Assets/Textures/island/islandTex"));
+                Content.Load<Texture2D>("Assets/Textures/island/island"));
 
             this.textureDictionary.Add("noTex",
                 Content.Load<Texture2D>("Assets/Textures/Models/chestTex"));
@@ -269,6 +269,9 @@ namespace AtlanticDrift
 
             this.textureDictionary.Add("fire",
                 Content.Load<Texture2D>("Assets/Textures/Models/fire"));
+
+            this.textureDictionary.Add("radio",
+                Content.Load<Texture2D>("Assets/Textures/Models/radio"));
 
 
             #region Sky
@@ -636,7 +639,7 @@ namespace AtlanticDrift
             Texture2D texture = null;
 
             Model model = this.modelDictionary["LowPoly"];
-            texture = this.textureDictionary["test"];
+            texture = this.textureDictionary["islandTex"];
             transform3D = new Transform3D(new Vector3(-90, 580, 100), new Vector3(0, 0, 0),
                 new Vector3(0.45f, 0.7f, 0.45f), Vector3.UnitX, Vector3.UnitY);
 
@@ -1017,7 +1020,7 @@ namespace AtlanticDrift
             #region Radio
 
             Model radioModel = this.modelDictionary["radio"];
-            texture = this.textureDictionary["checkerboard"];
+            texture = this.textureDictionary["radio"];
             transform3D = new Transform3D(new Vector3(-220, 30, -900), new Vector3(0, 20, 0),
                 new Vector3(0.1f, 0.1f, 0.1f), Vector3.UnitX, Vector3.UnitY);
 
