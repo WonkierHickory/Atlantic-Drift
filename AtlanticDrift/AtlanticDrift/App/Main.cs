@@ -44,6 +44,8 @@ namespace AtlanticDrift
         private AudioEmitter emitter = new AudioEmitter();
         private AudioListener listener = new AudioListener();
 
+        private bool yes = false;
+
         private float angle = 0;
         private float distance = 5;
 
@@ -272,6 +274,9 @@ namespace AtlanticDrift
 
             this.textureDictionary.Add("radio",
                 Content.Load<Texture2D>("Assets/Textures/Models/radio"));
+
+            this.textureDictionary.Add("final",
+                Content.Load<Texture2D>("Assets/Textures/Menu/final"));
 
 
             #region Sky
@@ -1821,7 +1826,7 @@ namespace AtlanticDrift
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
                 this.Exit();
 
-            angle += 0.01f;
+            //angle += 0.01f;
             listener.Position = this.cameraManager.ActiveCamera.Transform3D.Translation;
             emitter.Position = CalculateLocation(angle, distance);
 
@@ -1843,11 +1848,21 @@ namespace AtlanticDrift
             this.graphics.GraphicsDevice.Viewport = this.cameraManager.ActiveCamera.Viewport;
 
             
+
             base.Draw(gameTime);
+
+
+            if (this.keyboardManager.IsKeyDown(Keys.P))
+            {
+                drawEnd();
+                yes = true;
+            }
 
 
             //if (this.menuManager.Pause)
             //    drawDebugInfo();
+
+
         }
 
         #endregion
@@ -1877,8 +1892,14 @@ namespace AtlanticDrift
                 this.soundManager.Play3DCue("ocean", emitter);
                 this.soundManager.Resume3DCue("ocean");
 
-                this.soundManager.Play3DCue("radio_chatter", emitter);
-                this.soundManager.Resume3DCue("radio_chatter");
+                this.soundManager.Play3DCue("radio", emitter);
+                this.soundManager.Resume3DCue("radio");
+
+                this.soundManager.Play3DCue("script", emitter);
+                this.soundManager.Resume3DCue("script");
+
+                this.soundManager.Play3DCue("AtlanticDriftBGMusic", emitter);
+                this.soundManager.Resume3DCue("AtlanticDriftBGMusic");
                 #endregion
 
                 #region Menu
@@ -1895,7 +1916,9 @@ namespace AtlanticDrift
 
                 #region In-Game
                 this.soundManager.Pause3DCue("ocean");
-                this.soundManager.Pause3DCue("radio_chatter");
+                this.soundManager.Pause3DCue("radio");
+                this.soundManager.Pause3DCue("script");
+                this.soundManager.Pause3DCue("AtlanticDriftBGMusic");
                 #endregion
             }
             
@@ -1944,6 +1967,29 @@ namespace AtlanticDrift
             debugPosition += positionOffset;
 
             this.spriteBatch.DrawString(debugFont, "F1 - cycle cameras, WASD - move pawn camera, Space - Jump(1st person pawn only)", debugPosition, debugColor);
+            this.spriteBatch.End();
+
+        }
+
+        private void drawEnd()
+        {
+            //draw debug text after base.Draw() otherwise it will be behind the scene!
+            if (debugFont == null)
+                debugFont = this.fontDictionary["debug"];
+
+            Vector2 debugPosition = new Vector2(0, 0);
+
+            Vector2 winPosition = new Vector2(450, 400);
+
+            this.spriteBatch.Begin();
+
+            this.spriteBatch.Draw(this.textureDictionary["final"], debugPosition, Color.White);
+
+            this.spriteBatch.DrawString(debugFont, "YOU WIN!!", winPosition, debugColor);
+            debugPosition += positionOffset;
+
+
+
             this.spriteBatch.End();
 
         }
