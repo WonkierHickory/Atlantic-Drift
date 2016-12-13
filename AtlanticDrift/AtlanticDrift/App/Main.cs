@@ -570,10 +570,10 @@ namespace AtlanticDrift
             //used for animated models
             //this.animatedModelEffect = Content.Load<Effect>("Assets/Effects/Animated");
 
-            //this.texturedModelEffect.FogEnabled = true;
-            //this.texturedModelEffect.FogColor = Color.LightSlateGray.ToVector3();
-            //this.texturedModelEffect.FogStart = 20.75f;
-            //this.texturedModelEffect.FogEnd = 30.25f;
+            this.texturedModelEffect.FogEnabled = true;
+            this.texturedModelEffect.FogColor = Color.LightSlateGray.ToVector3();
+            this.texturedModelEffect.FogStart = 20.75f;
+            this.texturedModelEffect.FogEnd = 30.25f;
 
             //this.texturedPrimitiveEffect.FogEnabled = true;
 
@@ -1846,8 +1846,8 @@ namespace AtlanticDrift
             base.Draw(gameTime);
 
 
-            if (this.menuManager.Pause)
-                drawDebugInfo();
+            //if (this.menuManager.Pause)
+            //    drawDebugInfo();
         }
 
         #endregion
@@ -1876,6 +1876,9 @@ namespace AtlanticDrift
                 #region In-Game
                 this.soundManager.Play3DCue("ocean", emitter);
                 this.soundManager.Resume3DCue("ocean");
+
+                this.soundManager.Play3DCue("radio_chatter", emitter);
+                this.soundManager.Resume3DCue("radio_chatter");
                 #endregion
 
                 #region Menu
@@ -1892,6 +1895,7 @@ namespace AtlanticDrift
 
                 #region In-Game
                 this.soundManager.Pause3DCue("ocean");
+                this.soundManager.Pause3DCue("radio_chatter");
                 #endregion
             }
             
